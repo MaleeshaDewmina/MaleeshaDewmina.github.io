@@ -337,20 +337,15 @@
     try {await copyText(`To: maleeshadewmina@gmail.com\nSubject: ${mail.subject}\n\n${mail.body}`);showContactFeedback('Message copied. Paste it into your preferred email app to send.','success');}
     catch(_){showContactFeedback('Could not copy automatically. You can select the text fields and copy them manually.','error');}
   });
-  // Use FormSubmit's standard HTML POST instead of AJAX fetch.
-  // This lets FormSubmit show any activation, CAPTCHA or error page directly.
-  // Only prevent submission for failed local validation or honeypot matches.
+  // Fallback while the external direct-submit service is unavailable.
+  // Prepare a message using the visitor's own email app. Never claim delivery.
   contactForm?.addEventListener('submit', e=>{
+    e.preventDefault();
     const data=validateContact();
-    if(!data || contactForm.elements.namedItem('_honey')?.value){
-      e.preventDefault();
-      return;
-    }
-    showContactFeedback(
-      'FormSubmit will open in a new tab. Complete any verification there. Your message has not been confirmed delivered yet. If that page fails, return here and use Copy message or the email link.',
-      'neutral'
-    );
-    // No preventDefault(): the browser handles the real form submission.
+    if(!data || contactForm.elements.namedItem('_honey')?.value) return;
+    const draft=composeMailto(data);
+    showContactFeedback('Your email app should open a prepared draft. Please press Send in the email app to deliver it. If the app does not open, use Copy message.','neutral');
+    window.location.href=draft.href;
   });
 
   // Subtle pointer-following highlight. Never affects touch or reduced-motion users.
