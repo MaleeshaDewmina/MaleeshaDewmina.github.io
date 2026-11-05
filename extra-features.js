@@ -78,7 +78,7 @@
     const galleryButton = p.gallery?.length ? `<button type="button" class="case-action secondary" data-case-gallery="${c.pi}">View ${p.gallery.length} project visuals <svg class="external-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></button>` : '';
     const githubButton = !p.private && /^https:\/\/github\.com\//.test(p.url||'') ? `<a class="case-action" href="${escapeHTML(p.url)}" target="_blank" rel="noopener noreferrer">Explore on GitHub <svg class="external-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a>` : `<span class="case-private-note">The research repository is private.</span>`;
     const storySection = (heading,text) => `<section><h3>${escapeHTML(heading)}</h3><p>${escapeHTML(text)}</p></section>`;
-    caseContent.innerHTML = `<div class="case-hero"><div class="case-kicker">✳︎ ${escapeHTML(c.kind)}</div><h2 id="case-heading">${escapeHTML(c.title)}</h2><p>${escapeHTML(c.summary)}</p></div><div class="case-content"><div class="case-tags">${tags}</div><div class="case-story-grid">${storySection('The challenge',c.challenge)}${storySection('My approach',c.approach)}${storySection('Implementation',c.implementation)}${storySection('Learning and next steps',c.reflection)}</div><div class="case-role-note"><strong>Context</strong> · ${escapeHTML(c.role)}<br><span>${escapeHTML(c.outcome)}</span></div><div class="case-actions">${githubButton}${galleryButton}</div></div>`;
+    caseContent.innerHTML = `<div class="case-hero"><div class="case-kicker">✳︎︎ ${escapeHTML(c.kind)}</div><h2 id="case-heading">${escapeHTML(c.title)}</h2><p>${escapeHTML(c.summary)}</p></div><div class="case-content"><div class="case-tags">${tags}</div><div class="case-story-grid">${storySection('The challenge',c.challenge)}${storySection('My approach',c.approach)}${storySection('Implementation',c.implementation)}${storySection('Learning and next steps',c.reflection)}</div><div class="case-role-note"><strong>Context</strong> · ${escapeHTML(c.role)}<br><span>${escapeHTML(c.outcome)}</span></div><div class="case-actions">${githubButton}${galleryButton}</div></div>`;
     caseDialog.showModal();
     $('#case-close')?.focus();
   }
@@ -145,7 +145,7 @@
   const commandResults = $('#command-results');
   const sectionCommands = [
     ['Home', 'Back to the introduction','home','⌂'],
-    ['Featured case studies','Explore three in-depth projects','featured','✳︎'],
+    ['Featured case studies','Explore three in-depth projects','featured','✳︎︎'],
     ['All projects','Filter, search and browse 13 projects','projects','▦'],
     ['Screenshot walkthroughs','Explore three real project tours','walkthroughs','▶'],
     ['Currently building','See what I’m exploring now','now','◉'],
