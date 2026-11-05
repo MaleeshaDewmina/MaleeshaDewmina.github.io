@@ -337,15 +337,42 @@
     try {await copyText(`To: maleeshadewmina@gmail.com\nSubject: ${mail.subject}\n\n${mail.body}`);showContactFeedback('Message copied. Paste it into your preferred email app to send.','success');}
     catch(_){showContactFeedback('Could not copy automatically. You can select the text fields and copy them manually.','error');}
   });
-  // Fallback while the external direct-submit service is unavailable.
-  // Prepare a message using the visitor's own email app. Never claim delivery.
-  contactForm?.addEventListener('submit', e=>{
+  // Formspree AJAX submission. Native HTML POST remains available without JS.
+  const formspreeEndpoint = 'https://formspree.io/f/mnppwwan';
+  contactForm?.addEventListener('submit', async e=>{
     e.preventDefault();
     const data=validateContact();
     if(!data || contactForm.elements.namedItem('_honey')?.value) return;
-    const draft=composeMailto(data);
-    showContactFeedback('Your email app should open a prepared draft. Please press Send in the email app to deliver it. If the app does not open, use Copy message.','neutral');
-    window.location.href=draft.href;
+    const submitButton=$('#contact-submit');
+    const buttonMarkup=submitButton?.innerHTML;
+    if(submitButton){submitButton.disabled=true;submitButton.textContent='Sending…';}
+    showContactFeedback('Sending your message…','neutral');
+    try {
+      const formData=new FormData(contactForm);
+      const response=await fetch(formspreeEndpoint,{
+        method:'POST',
+        body:formData,
+        headers:{'Accept':'application/json'}
+      });
+      const result=await response.json().catch(()=>null);
+      if(!response.ok || (Array.isArray(result?.errors)&&result.errors.length)){
+        const issue=Array.isArray(result?.errors)
+          ? result.errors.map(x=>x.message).filter(Boolean).join(' ')
+          : '';
+        showContactFeedback(
+          issue ? `Form service: ${issue} Your message is still here; please try again or use Copy message.`
+                : 'The service could not accept this message. It is still here; please try again or use Copy message.',
+          'error'
+        );
+        return;
+      }
+      showContactFeedback('Message submitted successfully! Thank you for reaching out.','success');
+      contactForm.reset();
+    } catch(_) {
+      showContactFeedback('The contact service could not be reached. Your message is still here; please use Copy message or the email link.','error');
+    } finally {
+      if(submitButton){submitButton.disabled=false;submitButton.innerHTML=buttonMarkup;}
+    }
   });
 
   // Subtle pointer-following highlight. Never affects touch or reduced-motion users.
