@@ -22,7 +22,7 @@
    const p=getProject(conf),image=p?.gallery?.[conf.steps[0].index]?.src||'';
    return `<article class="walkthrough-card" data-tour-card="${i}">
      <div class="walkthrough-visual"><img loading="lazy" decoding="async" src="${escapeHTML(image)}" alt="${escapeHTML(p?.title||'')} project preview"><div class="walkthrough-visual-fallback" aria-hidden="true">${escapeHTML(p?.initials||'◈')}</div><span class="walkthrough-tag">REAL PROJECT SCREENSHOTS</span></div>
-     <div class="walkthrough-content"><span class="walkthrough-eyebrow">TOUR 0${i+1} / ${conf.steps.length} SCREENS</span><h3>${escapeHTML(p?.title)}</h3><p>${escapeHTML(conf.intro)}</p><button type="button" class="walkthrough-start" data-tour-open="${i}">Explore walkthrough <span aria-hidden="true">↗</span></button></div>
+     <div class="walkthrough-content"><span class="walkthrough-eyebrow">TOUR 0${i+1} / ${conf.steps.length} SCREENS</span><h3>${escapeHTML(p?.title)}</h3><p>${escapeHTML(conf.intro)}</p><button type="button" class="walkthrough-start" data-tour-open="${i}">Explore walkthrough <span aria-hidden="true"><svg class="external-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></button></div>
    </article>`;
  }).join('');
  grid.querySelectorAll('img').forEach(img=>img.addEventListener('error',()=>img.closest('.walkthrough-card')?.setAttribute('data-preview-failed','true')));
