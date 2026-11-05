@@ -1,0 +1,20 @@
+{
+  "name": "Maleesha Perera \u2014 Software & Learning",
+  "short_name": "Maleesha.dev",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#111a2a",
+  "theme_color": "#111a2a",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+/* Refined typography and animated two-line hero.
+   This file loads after the original styles to keep every earlier section intact. */
+
+/* Readability: larger body copy and controls; no heading-size changes. */
+body { font-size: 17px; }
+.nav-links a, .nav-cta { font-size: 14px; }
+.availability-pill { font-size: 12px; }
+.hero-intro { font-size: 18px; line-height: 1.76; }
+.hero-socials, .hero-hint { font-size: 13px; }
+.button, .featured-action, .now-button, .contact-submit { font-size: 14px; }
+.section-description { font-size: 16.5px; line-height: 1.75; }
+.filter-chip, .search-field input, .results-line { font-size: 13.5px; }
+.project-card-desc, .project-details ul, .project-empty p,
+.work-outro p, .text-link, .archive-grid p { font-size: 15px; line-height: 1.7; }
+.project-action, .project-details summary, .project-private { font-size: 13px; }
+.project-tags span, .project-pill { font-size: 11px; }
+.featured-card p, .now-card > p { font-size: 15.5px; line-height: 1.72; }
+.now-intro > p, .terminal-copy > p { font-size: 16px; line-height: 1.75; }
+.now-steps small, .now-actions > span, .terminal-small, .skills-help { font-size: 12px; }
+.about-copy > p:not(.about-big), .focus-layout > div:first-child > p,
+.education-side > p, .contact-panel .contact-copy > p { font-size: 16px; line-height: 1.8; }
+.focus-panel p, .timeline-content > p:last-child, .education-card p,
+.education-extra p, .skill-group p { font-size: 15px; line-height: 1.75; }
+.timeline-org, .timeline-date { font-size: 14px; }
+.mini-highlights small, .achievement { font-size: 12.5px; }
+.skills-results > p, .skills-none { font-size: 15px; }
+.skill-chip, .skill-project-link strong { font-size: 14px; }
+.skill-project-link small, .skill-match-count { font-size: 12px; }
+.milestone-card > p, .milestone-card details p { font-size: 14.5px; line-height: 1.72; }
+.milestone-card summary { font-size: 12.5px; }
+.terminal-log { font-size: 14px; line-height: 1.65; }
+.terminal-command-chips button, .terminal-form input, .terminal-form label,
+.terminal-form button { font-size: 13px; }
+.contact-form-heading p, .contact-form-card form > label,
+.form-row > label, .form-feedback, .contact-disclaimer { font-size: 12.5px; }
+.contact-form-card input, .contact-form-card select,
+.contact-form-card textarea { font-size: 14px; }
+.contact-copy-message { font-size: 12.5px; }
+.contact-address, .footer-layout p, .footer-links a { font-size: 14px; }
+.footer-layout p span { font-size: 12px; }
+.gallery-header h2 { font-size: 23px; } /* existing heading unchanged on desktop */
+.gallery-index, .gallery-bottom p, .gallery-bottom a { font-size: 13px; }
+.case-hero p, .case-story-grid p, .case-story-grid li { font-size: 15px; }
+.case-action, .case-private-note { font-size: 13px; }
+.command-result strong { font-size: 14px; }
+.command-result small { font-size: 12px; }
+.command-search-wrap input { font-size: 17px; }
+
+/* Hero heading: type each line, then cycle through related phrases. */
+.typing-heading .typing-line { display: block; min-height: 1.04em; }
+.typing-heading .typed-contents { display: inline; }
+.typing-heading .typing-line.headline-highlight { color: var(--lime); }
+.typing-heading .typing-line.headline-highlight .period { color: var(--lilac); }
+.typing-heading.is-running .typing-line.is-active .typed-contents::after {
+  content: "";
+  display: inline-block;
+  width: .062em;
+  height: .78em;
+  margin-left: .06em;
+  vertical-align: -.06em;
+  background: currentColor;
+  border-radius: 2px;
+  animation: hero-caret-blink .9s steps(1, end) infinite;
+}
+@keyframes hero-caret-blink { 50% { opacity: 0; } }
+
+@media (max-width:800px) {
+  .nav-links a { font-size: 16px; }
+  .hero-intro { font-size: 17px; }
+}
+@media (max-width:600px) {
+  body { font-size: 16px; }
+  .hero-intro { font-size: 16px; line-height: 1.78; }
+  .hero-buttons .button { font-size: 13px; }
+  .section-description { font-size: 15px; }
+  .project-card-desc, .project-details ul, .archive-grid p { font-size: 14.5px; }
+  .featured-card p, .now-card > p { font-size: 14.5px; }
+  .about-copy > p:not(.about-big), .focus-layout > div:first-child > p,
+  .education-side > p, .contact-panel .contact-copy > p { font-size: 15px; }
+  .focus-panel p, .timeline-content > p:last-child, .education-card p,
+  .education-extra p, .skill-group p { font-size: 14.5px; }
+  .milestone-card > p, .milestone-card details p { font-size: 14px; }
+  .terminal-copy > p, .now-intro > p { font-size: 15px; }
+  .contact-form-card input, .contact-form-card select,
+  .contact-form-card textarea { font-size: 16px; } /* avoid iOS zoom on focus */
+  .gallery-header h2 { font-size: 18px; } /* keep original mobile heading */
+  .footer-layout p, .footer-links a { font-size: 13px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .typing-heading .typed-contents::after { animation: none !important; }
+}
