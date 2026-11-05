@@ -109,8 +109,8 @@
     const tags = (p.tags || []).slice(0, 4).map(tag => `<span>${escapeHTML(tag)}</span>`).join('');
     const points = (p.highlights || []).map(point => `<li>${escapeHTML(point)}</li>`).join('');
     const repo = safeExternal(p.url);
-    const mainAction = p.private ? `<span class="project-private">Research repository is private <span aria-hidden="true">↗</span></span>` : `<a class="project-action" href="${escapeHTML(repo)}" target="_blank" rel="noopener noreferrer">Explore code <span aria-hidden="true">↗</span></a>`;
-    const galleryAction = gallery.length ? `<button class="project-action project-action-secondary" type="button" data-gallery-open="${i}" aria-label="View ${escapeHTML(p.title)} project gallery">Gallery <span aria-hidden="true">↗</span></button>` : '';
+    const mainAction = p.private ? `<span class="project-private">Research repository is private <span aria-hidden="true"><svg class="external-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>` : `<a class="project-action" href="${escapeHTML(repo)}" target="_blank" rel="noopener noreferrer">Explore code <span aria-hidden="true"><svg class="external-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></a>`;
+    const galleryAction = gallery.length ? `<button class="project-action project-action-secondary" type="button" data-gallery-open="${i}" aria-label="View ${escapeHTML(p.title)} project gallery">Gallery <span aria-hidden="true"><svg class="external-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></button>` : '';
     const details = points ? `<details class="project-details"><summary>Project highlights</summary><ul>${points}</ul></details>` : '';
     return `<article class="project-card reveal" data-category="${escapeHTML((p.cat || []).join(' '))}" data-search="${escapeHTML([p.title,p.desc,p.type,(p.tags||[]).join(' ')].join(' ').toLowerCase())}">
       <div class="project-image${hasCover ? '' : ' no-image'}">${visualMarkup}<div class="project-image-top"><span class="project-index">${String(i + 1).padStart(2, '0')} / ${String(projects.length).padStart(2, '0')}</span><span class="project-pill">${escapeHTML(badge)}</span></div></div>
@@ -234,7 +234,7 @@
 
   // Small, genuine interactive 'focus' panel.
   const focus = {
-    ai: {number:'01 / 03',glyph:'✳',title:'Technology that helps people learn.',description:'I’m exploring how AI-assisted feedback and thoughtful software can make learning experiences more personal, supportive and motivating.',color:'#bfb4f8'},
+    ai: {number:'01 / 03',glyph:'✳︎',title:'Technology that helps people learn.',description:'I’m exploring how AI-assisted feedback and thoughtful software can make learning experiences more personal, supportive and motivating.',color:'#bfb4f8'},
     apps: {number:'02 / 03',glyph:'⌘',title:'Useful software, from idea to interface.',description:'I enjoy connecting UI, application logic and databases to solve a real problem and make everyday workflows a little simpler.',color:'#b9e5db'},
     people: {number:'03 / 03',glyph:'✦',title:'Making technical ideas easier to share.',description:'From workshops to helping peers, I like turning complex topics into practical explanations and encouraging people to give technology a try.',color:'#e4eeb4'}
   };
