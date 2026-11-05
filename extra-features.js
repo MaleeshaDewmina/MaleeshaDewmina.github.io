@@ -292,7 +292,6 @@
   // Contact form (usable locally). By default compose a mailto draft; optional Formspree endpoint.
   const contactForm = $('#contact-form');
   const contactFeedback = $('#form-feedback');
-  const contactSubmit = $('#contact-submit');
   const contactFields = [$('#contact-name'),$('#contact-email'),$('#contact-subject'),$('#contact-message')];
   function showContactFeedback(text,kind='neutral'){
     contactFeedback.textContent=text;
@@ -338,58 +337,20 @@
     try {await copyText(`To: maleeshadewmina@gmail.com\nSubject: ${mail.subject}\n\n${mail.body}`);showContactFeedback('Message copied. Paste it into your preferred email app to send.','success');}
     catch(_){showContactFeedback('Could not copy automatically. You can select the text fields and copy them manually.','error');}
   });
-  // Live static-site contact submission with FormSubmit. Email ownership must be verified
-  // after the first request. Never claim delivery before the provider confirms acceptance.
-  const formEndpoint = 'https://formsubmit.co/ajax/maleeshadewmina@gmail.com';
-  if (contactSubmit) contactSubmit.innerHTML='Send message <span aria-hidden="true"><svg class="external-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span>';
-  contactForm?.addEventListener('submit',async e=>{
-    e.preventDefault();
-    const data=validateContact(); if(!data)return;
-    if(contactForm.elements.namedItem('_honey')?.value)return;
-    const submitText=contactSubmit.innerHTML;
-    contactSubmit.disabled=true;
-    contactSubmit.textContent='Sending securely…';
-    showContactFeedback('Contacting the form service…');
-    try{
-      const response=await fetch(formEndpoint,{
-        method:'POST',
-        // FormSubmit's documented AJAX examples use form-encoded fields.
-        // A simple form POST also avoids JSON CORS preflight on mobile browsers.
-        headers:{'Accept':'application/json'},
-        body:new URLSearchParams({
-          name:data.name,email:data.email,subject:data.subject,message:data.message,
-          _subject:`Portfolio enquiry — ${data.subject}`,_honey:'',
-          _url:'https://maleeshadewmina.github.io/'
-        })
-      });
-      const result=await response.json().catch(()=>null);
-      const providerMessage=typeof result?.message==='string'?result.message:'';
-      // FormSubmit can return HTTP 200 with success:"false", including for
-      // email activation. Handle it before accepting or clearing the form.
-      if(/activat|confirm.{0,35}(?:form|email)|verif/i.test(providerMessage)){
-        showContactFeedback(
-          'The contact form needs email activation. Maleesha: check the inbox and Spam folder for the FormSubmit “Activate Form” email and confirm it. Until then, use “Copy message” or the email link. Your message is still here.',
-          'neutral'
-        );
-        return;
-      }
-      const accepted=response.ok && (result?.success===true || result?.success==='true');
-      if(!accepted){
-        if(/referer|referrer|web server|html files/i.test(providerMessage)){
-          showContactFeedback('The form service could not verify this website request. Please use “Copy message” or the email link. Your message is still here.','error');
-        } else {
-          showContactFeedback('The contact service did not accept this submission. Please use “Copy message” or the email link. Your message is still here.','error');
-        }
-        return;
-      }
-      showContactFeedback('The contact service accepted your message. Thanks for reaching out!','success');
-      contactForm.reset();
-    } catch(_) {
-      showContactFeedback('Could not connect to the contact service. A browser privacy setting or connection issue may be blocking it. Your message is still here; please use “Copy message” or the email link.','error');
-    } finally {
-      contactSubmit.disabled=false;
-      contactSubmit.innerHTML=submitText;
+  // Use FormSubmit's standard HTML POST instead of AJAX fetch.
+  // This lets FormSubmit show any activation, CAPTCHA or error page directly.
+  // Only prevent submission for failed local validation or honeypot matches.
+  contactForm?.addEventListener('submit', e=>{
+    const data=validateContact();
+    if(!data || contactForm.elements.namedItem('_honey')?.value){
+      e.preventDefault();
+      return;
     }
+    showContactFeedback(
+      'FormSubmit will open in a new tab. Complete any verification there. Your message has not been confirmed delivered yet. If that page fails, return here and use Copy message or the email link.',
+      'neutral'
+    );
+    // No preventDefault(): the browser handles the real form submission.
   });
 
   // Subtle pointer-following highlight. Never affects touch or reduced-motion users.
