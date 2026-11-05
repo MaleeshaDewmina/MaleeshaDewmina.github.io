@@ -234,7 +234,7 @@
 
   // Small, genuine interactive 'focus' panel.
   const focus = {
-    ai: {number:'01 / 03',glyph:'✳︎',title:'Technology that helps people learn.',description:'I’m exploring how AI-assisted feedback and thoughtful software can make learning experiences more personal, supportive and motivating.',color:'#bfb4f8'},
+    ai: {number:'01 / 03',glyph:'✳︎︎',title:'Technology that helps people learn.',description:'I’m exploring how AI-assisted feedback and thoughtful software can make learning experiences more personal, supportive and motivating.',color:'#bfb4f8'},
     apps: {number:'02 / 03',glyph:'⌘',title:'Useful software, from idea to interface.',description:'I enjoy connecting UI, application logic and databases to solve a real problem and make everyday workflows a little simpler.',color:'#b9e5db'},
     people: {number:'03 / 03',glyph:'✦',title:'Making technical ideas easier to share.',description:'From workshops to helping peers, I like turning complex topics into practical explanations and encouraging people to give technology a try.',color:'#e4eeb4'}
   };
