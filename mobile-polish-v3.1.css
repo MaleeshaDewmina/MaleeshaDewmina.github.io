@@ -94,3 +94,11 @@
   /* The mobile floating button covered project actions; top navigation remains available. */
   .back-to-top { display: none !important; }
 }
+
+/* V3.1: keep professional links legible without overflow on phones. */
+@media (max-width: 600px) {
+  .hero-socials { flex-wrap: wrap; column-gap: 10px; row-gap: 8px; }
+  .hero-socials .social-label { flex-basis: 100%; margin-right: 0; }
+  .hero-socials a { white-space: nowrap; }
+  .footer-links { column-gap: 18px; row-gap: 12px; }
+}
