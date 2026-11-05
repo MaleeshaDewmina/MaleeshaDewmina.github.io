@@ -72,3 +72,25 @@
   .now-index { font-size: 8px; }
   .focus-panel { padding-inline: 20px; }
 }
+
+/* V3.1 follow-up: project cards, skills and touch targets on phones. */
+@media (max-width: 600px) {
+  .project-image { height: 188px; }
+  .project-card-body { padding: 19px 18px 13px; }
+  .project-card-title { font-size: 21px; line-height: 1.22; }
+  .project-card-desc { margin-bottom: 13px; font-size: 13px; line-height: 1.62; }
+  .project-bottom { min-height: 48px; }
+  .project-action { padding: 12px 15px; gap: 7px; font-size: 12px; min-width: 0; }
+  .project-action span:last-child { font-size: 12px; flex: none; }
+  .skills-selector, .skills-results { padding: 20px 18px; }
+  .skills-explorer { min-height: 0; }
+  .skill-project-link { padding: 12px 13px; }
+  .skill-project-link .external-arrow { width: 14px; height: 14px; }
+  .walkthrough-visual { height: 185px; }
+  .walkthrough-content { padding: 20px 18px; gap: 10px; }
+  .walkthrough-content h3 { font-size: 22px; line-height: 1.22; }
+  .walkthrough-content p { line-height: 1.6; }
+  .walkthrough-card { border-radius: 18px; }
+  /* The mobile floating button covered project actions; top navigation remains available. */
+  .back-to-top { display: none !important; }
+}
