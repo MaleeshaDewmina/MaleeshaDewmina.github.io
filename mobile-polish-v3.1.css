@@ -1,0 +1,74 @@
+/* V3.1 — iOS and small-screen refinement; desktop structure preserved. */
+.external-arrow {
+  display: inline-block;
+  width: .95em;
+  height: .95em;
+  flex: none;
+  vertical-align: -.11em;
+  overflow: visible;
+  stroke: currentColor;
+}
+/* Decorative symbols should never be platform-coloured emoji. */
+.now-card::before {
+  content: "";
+  width: 250px;
+  height: 250px;
+  top: -90px;
+  right: -65px;
+  background: radial-gradient(circle,rgba(198,183,255,.25) 0%,rgba(198,183,255,.06) 48%,transparent 72%);
+  opacity: .55;
+  pointer-events: none;
+}
+.case-hero::after { content: "✳︎"; font-family: Arial, sans-serif; }
+.focus-glyph { font-family: Arial, sans-serif; pointer-events: none; }
+@media (max-width: 800px) {
+  html { scroll-padding-top: 86px; }
+  section[id], #skills-explorer, #walkthroughs, #contact, #home { scroll-margin-top: 86px; }
+  .now-layout { gap: 22px; }
+  .now-card { isolation: isolate; }
+  .focus-layout { gap: 25px; }
+}
+@media (max-width: 600px) {
+  .hero-layout { padding-top: 39px; }
+  .hero h1 { font-size: clamp(39px, 10vw, 54px); line-height: 1.08; letter-spacing: -2.25px; }
+  .headline-highlight { letter-spacing: -2px; }
+  .hero-kicker { margin-top: 23px; }
+  .hero-buttons { flex-wrap: wrap; }
+  .hero-buttons .button { min-height: 44px; }
+  .section-intro h2, .about-heading h2, .focus-layout h2, .education-side h2 {
+    font-size: clamp(34px, 9vw, 42px);
+    letter-spacing: -1.5px;
+  }
+  .now-section.section { padding-block: 53px 56px; }
+  .now-intro h2 { font-size: clamp(36px, 9vw, 45px); letter-spacing: -1.5px; margin-bottom: 13px; }
+  .now-meta { margin-top: 18px; flex-wrap: wrap; line-height: 1.5; }
+  .now-card { padding: 23px 19px; border-radius: 20px; }
+  .now-card::before { width: 145px; height: 145px; top: -25px; right: -50px; opacity: .35; }
+  .now-header { align-items: center; gap: 8px; }
+  .now-index { font-size: 9px; letter-spacing: .65px; text-align: right; }
+  .now-card h3 { font-size: clamp(30px, 8vw, 36px); line-height: 1.14; letter-spacing: -1px; margin: 18px 0 10px; }
+  .now-card > p { font-size: 14.5px; line-height: 1.7; }
+  .now-steps { margin-block: 18px; gap: 8px; }
+  .now-steps > div { padding: 10px 12px; }
+  .now-actions { padding-top: 16px; gap: 12px; }
+  .now-actions > span { font-size: 11px; line-height: 1.5; }
+  .now-button { max-width: 100%; font-size: 12px; line-height: 1.4; text-align: left; }
+  .focus-section { padding: 59px 0 63px; }
+  .focus-layout { gap: 24px; }
+  .focus-tabs { gap: 5px; margin-top: 18px; }
+  .focus-tab { padding: 10px 13px; font-size: 13px; }
+  .focus-panel { min-height: 320px; padding: 25px 23px; border-radius: 20px; }
+  .focus-glyph { top: 10px; right: 20px; font-size: 84px; opacity: .15; animation: none; }
+  .focus-number, .focus-panel h3, .focus-panel p, .focus-bottom { position: relative; z-index: 1; }
+  .focus-panel h3 { font-size: clamp(27px, 7vw, 32px); letter-spacing: -.9px; line-height: 1.14; margin-bottom: 11px; }
+  .focus-panel p { font-size: 14.5px; line-height: 1.65; margin-bottom: 23px; }
+  .focus-bottom { font-size: 10px; letter-spacing: 1.5px; }
+  .back-to-top { right: 15px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); }
+}
+@media (max-width: 360px) {
+  .hero h1 { font-size: 37px; letter-spacing: -1.8px; }
+  .brand-word { font-size: 17px; }
+  .now-badge { font-size: 9px; padding: 7px 10px; }
+  .now-index { font-size: 8px; }
+  .focus-panel { padding-inline: 20px; }
+}
