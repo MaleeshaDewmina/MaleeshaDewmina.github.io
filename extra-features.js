@@ -353,8 +353,10 @@
     try{
       const response=await fetch(formEndpoint,{
         method:'POST',
-        headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body:JSON.stringify({
+        // FormSubmit's documented AJAX examples use form-encoded fields.
+        // A simple form POST also avoids JSON CORS preflight on mobile browsers.
+        headers:{'Accept':'application/json'},
+        body:new URLSearchParams({
           name:data.name,email:data.email,subject:data.subject,message:data.message,
           _subject:`Portfolio enquiry — ${data.subject}`,_honey:'',
           _url:'https://maleeshadewmina.github.io/'
