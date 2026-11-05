@@ -75,10 +75,10 @@
     const p = projects[c.pi] || {};
     caseReturnFocus = document.activeElement;
     const tags = (p.tags || []).map(tag => `<span>${escapeHTML(tag)}</span>`).join('');
-    const galleryButton = p.gallery?.length ? `<button type="button" class="case-action secondary" data-case-gallery="${c.pi}">View ${p.gallery.length} project visuals ↗</button>` : '';
-    const githubButton = !p.private && /^https:\/\/github\.com\//.test(p.url||'') ? `<a class="case-action" href="${escapeHTML(p.url)}" target="_blank" rel="noopener noreferrer">Explore on GitHub ↗</a>` : `<span class="case-private-note">The research repository is private.</span>`;
+    const galleryButton = p.gallery?.length ? `<button type="button" class="case-action secondary" data-case-gallery="${c.pi}">View ${p.gallery.length} project visuals <svg class="external-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></button>` : '';
+    const githubButton = !p.private && /^https:\/\/github\.com\//.test(p.url||'') ? `<a class="case-action" href="${escapeHTML(p.url)}" target="_blank" rel="noopener noreferrer">Explore on GitHub <svg class="external-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a>` : `<span class="case-private-note">The research repository is private.</span>`;
     const storySection = (heading,text) => `<section><h3>${escapeHTML(heading)}</h3><p>${escapeHTML(text)}</p></section>`;
-    caseContent.innerHTML = `<div class="case-hero"><div class="case-kicker">✳ ${escapeHTML(c.kind)}</div><h2 id="case-heading">${escapeHTML(c.title)}</h2><p>${escapeHTML(c.summary)}</p></div><div class="case-content"><div class="case-tags">${tags}</div><div class="case-story-grid">${storySection('The challenge',c.challenge)}${storySection('My approach',c.approach)}${storySection('Implementation',c.implementation)}${storySection('Learning and next steps',c.reflection)}</div><div class="case-role-note"><strong>Context</strong> · ${escapeHTML(c.role)}<br><span>${escapeHTML(c.outcome)}</span></div><div class="case-actions">${githubButton}${galleryButton}</div></div>`;
+    caseContent.innerHTML = `<div class="case-hero"><div class="case-kicker">✳︎ ${escapeHTML(c.kind)}</div><h2 id="case-heading">${escapeHTML(c.title)}</h2><p>${escapeHTML(c.summary)}</p></div><div class="case-content"><div class="case-tags">${tags}</div><div class="case-story-grid">${storySection('The challenge',c.challenge)}${storySection('My approach',c.approach)}${storySection('Implementation',c.implementation)}${storySection('Learning and next steps',c.reflection)}</div><div class="case-role-note"><strong>Context</strong> · ${escapeHTML(c.role)}<br><span>${escapeHTML(c.outcome)}</span></div><div class="case-actions">${githubButton}${galleryButton}</div></div>`;
     caseDialog.showModal();
     $('#case-close')?.focus();
   }
@@ -133,7 +133,7 @@
     $('#skill-result-title').textContent=skill.label;
     $('#skill-result-description').textContent=skill.description;
     $('#skill-match-count').textContent=`${matches.length} ${matches.length===1?'project':'projects'}`;
-    $('#skill-projects').innerHTML=matches.length?matches.map(({p,i})=>`<button class="skill-project-link" type="button" data-project-jump="${i}"><span><strong>${escapeHTML(p.title)}</strong><small>${escapeHTML(p.type || 'Project')} · ${escapeHTML((p.tags||[]).filter(tag=>skill.match.test(tag)).join(', '))}</small></span><span aria-hidden="true">↗</span></button>`).join(''):'<p class="skills-none">No documented projects matched this skill yet.</p>';
+    $('#skill-projects').innerHTML=matches.length?matches.map(({p,i})=>`<button class="skill-project-link" type="button" data-project-jump="${i}"><span><strong>${escapeHTML(p.title)}</strong><small>${escapeHTML(p.type || 'Project')} · ${escapeHTML((p.tags||[]).filter(tag=>skill.match.test(tag)).join(', '))}</small></span><span aria-hidden="true"><svg class="external-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></button>`).join(''):'<p class="skills-none">No documented projects matched this skill yet.</p>';
   }
   skillChipGrid.addEventListener('click', e => { const chip=e.target.closest('[data-skill-index]');if(chip)setSkill(Number(chip.dataset.skillIndex)); });
   $('#skill-projects').addEventListener('click',e=>{const button=e.target.closest('[data-project-jump]');if(button)jumpToProject(Number(button.dataset.projectJump));});
@@ -145,7 +145,7 @@
   const commandResults = $('#command-results');
   const sectionCommands = [
     ['Home', 'Back to the introduction','home','⌂'],
-    ['Featured case studies','Explore three in-depth projects','featured','✳'],
+    ['Featured case studies','Explore three in-depth projects','featured','✳︎'],
     ['All projects','Filter, search and browse 13 projects','projects','▦'],
     ['Screenshot walkthroughs','Explore three real project tours','walkthroughs','▶'],
     ['Currently building','See what I’m exploring now','now','◉'],
@@ -162,7 +162,7 @@
     ...sectionCommands.map(([title,subtitle,target,icon])=>({title,subtitle,icon,run:()=>jumpTo(target)})),
     {title:'Toggle light / dark mode',subtitle:'Change the site theme',icon:'☼',run:()=>$('#theme-toggle')?.click()},
     {title:'Download CV',subtitle:'Open my PDF résumé',icon:'↓',run:()=>window.open('Maleesha_Perera_Modern_Creative_CV.pdf','_blank','noopener,noreferrer')},
-    {title:'View GitHub',subtitle:'Browse my public repositories',icon:'↗',run:()=>window.open('https://github.com/MaleeshaDewmina','_blank','noopener,noreferrer')},
+    {title:'View GitHub',subtitle:'Browse my public repositories',icon:'→',run:()=>window.open('https://github.com/MaleeshaDewmina','_blank','noopener,noreferrer')},
     ...Object.entries(caseStudies).map(([key,c])=>({title:`Case study: ${c.title}`,subtitle:'Open detailed project context',icon:'✦',run:()=>openCaseStudy(key)})),
     ...projects.map((p,i)=>({title:p.title,subtitle:'Open in project library · '+(p.tags||[]).join(', '),icon:'▣',run:()=>jumpToProject(i)}))
   ];
@@ -175,7 +175,7 @@
     const parts=term.split(/\s+/).filter(Boolean);
     shownCommands=commands.filter(c=>parts.every(part=>(c.title+' '+c.subtitle).toLowerCase().includes(part))).slice(0,11);
     selectedCommand=0;
-    commandResults.innerHTML=shownCommands.length?shownCommands.map((c,i)=>`<button type="button" class="command-result" role="option" data-command-index="${i}" aria-selected="${i===0}" data-active="${i===0}"><span class="command-result-symbol" aria-hidden="true">${escapeHTML(c.icon)}</span><span class="command-result-content"><strong>${escapeHTML(c.title)}</strong><small>${escapeHTML(c.subtitle)}</small></span><span class="command-result-arrow" aria-hidden="true">↗</span></button>`).join(''):'<div class="command-empty">No matching commands. Try “projects”, “skills” or “contact”.</div>';
+    commandResults.innerHTML=shownCommands.length?shownCommands.map((c,i)=>`<button type="button" class="command-result" role="option" data-command-index="${i}" aria-selected="${i===0}" data-active="${i===0}"><span class="command-result-symbol" aria-hidden="true">${escapeHTML(c.icon)}</span><span class="command-result-content"><strong>${escapeHTML(c.title)}</strong><small>${escapeHTML(c.subtitle)}</small></span><span class="command-result-arrow" aria-hidden="true"><svg class="external-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></button>`).join(''):'<div class="command-empty">No matching commands. Try “projects”, “skills” or “contact”.</div>';
   }
   function activateCommand(index) {
     const command=shownCommands[index];
@@ -341,7 +341,7 @@
   // Live static-site contact submission with FormSubmit. Email ownership must be verified
   // after the first request. Never claim delivery before the provider confirms acceptance.
   const formEndpoint = 'https://formsubmit.co/ajax/maleeshadewmina@gmail.com';
-  if (contactSubmit) contactSubmit.innerHTML='Send message <span aria-hidden="true">↗</span>';
+  if (contactSubmit) contactSubmit.innerHTML='Send message <span aria-hidden="true"><svg class="external-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span>';
   contactForm?.addEventListener('submit',async e=>{
     e.preventDefault();
     const data=validateContact(); if(!data)return;
