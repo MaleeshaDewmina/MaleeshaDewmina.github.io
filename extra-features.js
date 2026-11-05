@@ -354,19 +354,36 @@
       const response=await fetch(formEndpoint,{
         method:'POST',
         headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body:JSON.stringify({name:data.name,email:data.email,subject:data.subject,message:data.message,_subject:`Portfolio enquiry — ${data.subject}`,_honey:''})
+        body:JSON.stringify({
+          name:data.name,email:data.email,subject:data.subject,message:data.message,
+          _subject:`Portfolio enquiry — ${data.subject}`,_honey:'',
+          _url:'https://maleeshadewmina.github.io/'
+        })
       });
       const result=await response.json().catch(()=>null);
-      if(!response.ok || result?.success===false || result?.success==='false') throw new Error('Service refused the submission');
-      const message=String(result?.message||'');
-      if(/confirm|activat|verif/i.test(message)) {
-        showContactFeedback('Request received, but the recipient must verify their email address before direct delivery is enabled. You can also use the email link.','neutral');
-      } else {
-        showContactFeedback('The contact service accepted your message. Thank you! First-time delivery may still require recipient email verification.','success');
+      const providerMessage=typeof result?.message==='string'?result.message:'';
+      // FormSubmit can return HTTP 200 with success:"false", including for
+      // email activation. Handle it before accepting or clearing the form.
+      if(/activat|confirm.{0,35}(?:form|email)|verif/i.test(providerMessage)){
+        showContactFeedback(
+          'The contact form needs email activation. Maleesha: check the inbox and Spam folder for the FormSubmit “Activate Form” email and confirm it. Until then, use “Copy message” or the email link. Your message is still here.',
+          'neutral'
+        );
+        return;
       }
+      const accepted=response.ok && (result?.success===true || result?.success==='true');
+      if(!accepted){
+        if(/referer|referrer|web server|html files/i.test(providerMessage)){
+          showContactFeedback('The form service could not verify this website request. Please use “Copy message” or the email link. Your message is still here.','error');
+        } else {
+          showContactFeedback('The contact service did not accept this submission. Please use “Copy message” or the email link. Your message is still here.','error');
+        }
+        return;
+      }
+      showContactFeedback('The contact service accepted your message. Thanks for reaching out!','success');
       contactForm.reset();
     } catch(_) {
-      showContactFeedback('The service could not confirm delivery. Your message is still here; please use “Copy message” or the email link instead.','error');
+      showContactFeedback('Could not connect to the contact service. A browser privacy setting or connection issue may be blocking it. Your message is still here; please use “Copy message” or the email link.','error');
     } finally {
       contactSubmit.disabled=false;
       contactSubmit.innerHTML=submitText;
