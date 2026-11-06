@@ -20,6 +20,8 @@
   }
   function jumpToProject(index) {
     if (!projects[index]) return;
+    const library = document.getElementById('project-library-details');
+    if (library) library.open = true;
     // Clear filters first so the chosen card is visible.
     $('[data-filter="all"]')?.click();
     const search = $('#project-search');
