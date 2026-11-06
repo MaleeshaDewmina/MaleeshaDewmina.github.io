@@ -150,3 +150,50 @@
   }
   .portrait-frame { translate: none !important; }
 }
+
+
+/* V4.3 — two small animated phrase chips in the space around the portrait.
+   They only display on mobile and sit ABOVE / BELOW the photo, not over the face. */
+.portrait-phrase { display:none; }
+@media (max-width:600px) {
+  .hero-visual .portrait-phrase {
+    display:inline-flex;
+    align-items:center;
+    position:absolute;
+    z-index:5;
+    white-space:nowrap;
+    max-width:90%;
+    font:700 10.5px/1.2 'DM Sans',sans-serif;
+    letter-spacing:.25px;
+    padding:6px 11px;
+    border:1px solid rgba(255,255,255,.25);
+    border-radius:999px;
+    box-shadow:0 7px 20px rgba(0,0,0,.18);
+    pointer-events:none;
+  }
+  .portrait-phrase::before {
+    content:""; width:5px; height:5px; flex:none; border-radius:50%;
+    margin-right:7px; background:currentColor; opacity:.75;
+  }
+  .hero-visual .portrait-phrase-top {
+    top:0; left:0;
+    color:#152118; background:rgba(220,255,149,.94);
+    animation:phrase-bob-top 7s ease-in-out infinite;
+  }
+  .hero-visual .portrait-phrase-bottom {
+    bottom:0; right:0;
+    color:#252041; background:rgba(211,197,255,.94);
+    animation:phrase-bob-bottom 8s ease-in-out infinite;
+  }
+}
+@keyframes phrase-bob-top {
+  0%,100% { transform:translateY(0) rotate(-2deg); }
+  50% { transform:translateY(-3px) rotate(-1deg); }
+}
+@keyframes phrase-bob-bottom {
+  0%,100% { transform:translateY(0) rotate(2deg); }
+  50% { transform:translateY(3px) rotate(1deg); }
+}
+@media (prefers-reduced-motion:reduce) {
+  .hero-visual .portrait-phrase { animation:none !important; }
+}
