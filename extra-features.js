@@ -8,6 +8,7 @@
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function jumpTo(sectionId) {
+    if (sectionId === 'projects') document.getElementById('project-library-details')?.setAttribute('open', '');
     const node = document.getElementById(sectionId);
     if (!node) return;
     const nav = $('#nav-links');
@@ -17,6 +18,13 @@
     toggle?.setAttribute('aria-label','Open navigation');
     node.scrollIntoView({behavior:reducedMotion?'auto':'smooth',block:'start'});
     try { history.replaceState(null,'','#'+sectionId); } catch(_) {}
+  }
+  // Deep links and navigation into the full project collection must open it first.
+  document.querySelectorAll('a[href="#projects"]').forEach(link => link.addEventListener('click', () => {
+    document.getElementById('project-library-details')?.setAttribute('open', '');
+  }));
+  if (window.location.hash === '#projects') {
+    document.getElementById('project-library-details')?.setAttribute('open', '');
   }
   function jumpToProject(index) {
     if (!projects[index]) return;
