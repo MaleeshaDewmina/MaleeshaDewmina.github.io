@@ -197,3 +197,60 @@
 @media (prefers-reduced-motion:reduce) {
   .hero-visual .portrait-phrase { animation:none !important; }
 }
+
+
+/* V4.4: reliable mobile portrait badges, positioned clearly outside the face. */
+.personal-grid { grid-template-columns:repeat(4,minmax(0,1fr)); }
+.personal-card { min-width:0; }
+.personal-card-books { background:var(--surface-soft); }
+.personal-card-books .personal-symbol { font-size:34px; }
+@media (min-width: 701px) and (max-width: 1100px) {
+ .personal-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .personal-card:last-child { grid-column:auto; min-height:270px; }
+}
+@media (max-width: 700px) {
+ .personal-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .personal-card,.personal-card:last-child { grid-column:auto; }
+}
+@media (max-width:600px) {
+ .personal-grid { grid-template-columns:1fr; }
+ .hero-visual { overflow:visible; }
+ .hero-visual .portrait-phrase {
+   position:absolute !important;
+   display:inline-flex !important;
+   width:max-content;
+   height:auto;
+   max-width:calc(100% - 18px);
+   padding:9px 13px !important;
+   color:#1a2330;
+   border-radius:13px !important;
+   border:1px solid rgba(255,255,255,.40) !important;
+   box-shadow:0 10px 26px rgba(0,0,0,.27) !important;
+   font:700 12px/1.25 'DM Sans',Arial,sans-serif !important;
+   letter-spacing:.02em;
+   opacity:1;
+   white-space:nowrap;
+   pointer-events:none;
+   z-index:8 !important;
+ }
+ .hero-visual .portrait-phrase-top {
+   top:1% !important; left:-2% !important; right:auto !important; bottom:auto !important;
+   background:#ddff8c !important;
+   transform:rotate(-4deg);
+ }
+ .hero-visual .portrait-phrase-bottom {
+   top:auto !important; bottom:0 !important; left:auto !important; right:-2% !important;
+   background:#d4c6ff !important;
+   color:#242044 !important;
+   transform:rotate(3deg);
+ }
+ .hero-visual .portrait-phrase::before {width:6px;height:6px;}
+}
+@media (max-width: 390px) {
+ .hero-visual .portrait-phrase { font-size:11px !important; padding:8px 10px !important; }
+ .hero-visual .portrait-phrase-top { left:0 !important; }
+ .hero-visual .portrait-phrase-bottom { right:0 !important; }
+}
+@media (prefers-reduced-motion:reduce) {
+ .hero-visual .portrait-phrase {animation:none !important;}
+}
