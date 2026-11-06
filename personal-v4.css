@@ -64,3 +64,42 @@
   .library-summary-cta { margin-left:54px; }
   .project-library-inner { padding-top:21px; }
 }
+
+/* V4.1 — a calmer portrait area on phones.
+   Keep desktop artwork, remove competing decorative labels on small screens. */
+@media (max-width: 600px) {
+  .hero-layout { gap: 8px; padding-bottom: 12px; }
+  .hero-hint { display: none; } /* Search remains available in the top navigation. */
+  .hero-socials { margin-top: 24px; }
+  .hero-visual {
+    width: min(100%, 340px);
+    max-width: 340px;
+    min-height: 350px;
+    margin: 10px auto 4px;
+    perspective: none;
+  }
+  .portrait-frame {
+    width: 75%;
+    max-width: 270px;
+    border-width: 4px;
+    border-color: #d7e5f03d;
+    border-radius: 145px 145px 90px 90px;
+    box-shadow: 0 17px 36px #02081065;
+    transform: none !important;
+    will-change: auto;
+  }
+  .portrait-frame img,
+  .hero-visual:hover .portrait-frame img { transform: scale(1.10); }
+  .portrait-back-ring,
+  .float-note,
+  .hero-spark,
+  .portrait-tag { display: none !important; }
+  .hero-bottom { justify-content: center; padding-bottom: 22px; }
+  .hero-bottom > span:first-child { display: none; }
+  .hero-bottom a { font-size: 10px; letter-spacing: 1.3px; }
+  .ticker { display: none; }
+}
+@media (max-width: 390px) {
+  .hero-visual { min-height: 330px; max-width: 310px; }
+  .portrait-frame { max-width: 250px; }
+}
