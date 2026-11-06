@@ -65,41 +65,88 @@
   .project-library-inner { padding-top:21px; }
 }
 
-/* V4.1 — a calmer portrait area on phones.
-   Keep desktop artwork, remove competing decorative labels on small screens. */
+/* V4.2 — soft, playful mobile motion without blocking the portrait. */
 @media (max-width: 600px) {
-  .hero-layout { gap: 8px; padding-bottom: 12px; }
-  .hero-hint { display: none; } /* Search remains available in the top navigation. */
+  .hero-layout { gap: 9px; padding-bottom: 16px; }
+  .hero-hint { display: none; } /* Search stays in the header. */
   .hero-socials { margin-top: 24px; }
   .hero-visual {
-    width: min(100%, 340px);
-    max-width: 340px;
-    min-height: 350px;
-    margin: 10px auto 4px;
+    width: min(100%, 355px);
+    max-width: 355px;
+    min-height: 405px;
+    margin: 16px auto 8px;
     perspective: none;
+    isolation: isolate;
+  }
+  /* Keep every animation behind or outside the picture itself. */
+  .hero-visual::before {
+    content: "";
+    position: absolute;
+    inset: 11% 9% 3%;
+    border-radius: 50%;
+    z-index: -2;
+    background: radial-gradient(ellipse at center, rgba(198,183,255,.20), rgba(46,184,171,.10) 48%, transparent 72%);
+    filter: blur(12px);
+    animation: portrait-glow-mobile 8s ease-in-out infinite alternate;
+    pointer-events: none;
   }
   .portrait-frame {
-    width: 75%;
-    max-width: 270px;
-    border-width: 4px;
-    border-color: #d7e5f03d;
-    border-radius: 145px 145px 90px 90px;
-    box-shadow: 0 17px 36px #02081065;
+    width: 80%;
+    max-width: 292px;
+    border: 5px solid rgba(210,229,245,.32);
+    border-radius: 160px 160px 95px 95px;
+    box-shadow: 0 23px 48px rgba(2,8,16,.55);
     transform: none !important;
+    animation: portrait-rise-mobile 7s ease-in-out infinite;
     will-change: auto;
+    z-index: 2;
   }
-  .portrait-frame img,
-  .hero-visual:hover .portrait-frame img { transform: scale(1.10); }
-  .portrait-back-ring,
-  .float-note,
-  .hero-spark,
-  .portrait-tag { display: none !important; }
-  .hero-bottom { justify-content: center; padding-bottom: 22px; }
-  .hero-bottom > span:first-child { display: none; }
-  .hero-bottom a { font-size: 10px; letter-spacing: 1.3px; }
-  .ticker { display: none; }
+  .portrait-frame img, .hero-visual:hover .portrait-frame img {
+    transform: scale(1.10);
+  }
+  .portrait-back-ring {
+    display: block !important;
+    width: 92%;
+    left: 4%;
+    top: 8%;
+    z-index: 0;
+    opacity: .65;
+    border-color: rgba(202,235,243,.30);
+    box-shadow: 0 0 0 17px rgba(255,255,255,.025),0 0 0 36px rgba(255,255,255,.015);
+    animation: portrait-orbit 30s linear infinite;
+    pointer-events: none;
+  }
+  .float-note, .portrait-tag { display: none !important; }
+  .hero-spark { display: block !important; pointer-events: none; z-index: 3; }
+  .spark-one { right: 0; top: 8%; font-size: 23px; opacity:.75; animation: sparkle-mobile 5s ease-in-out infinite; }
+  .spark-two { left: 1%; bottom: 17%; font-size: 21px; opacity:.65; animation: sparkle-mobile 6s ease-in-out infinite reverse; }
+  .hero-bottom { justify-content:center; padding-bottom:21px; }
+  .hero-bottom > span:first-child { display:none; }
+  .hero-bottom a { font-size:10px; letter-spacing:1.3px; }
+  .ticker { display:block; opacity:.85; }
+  .ticker-inner { padding: 8px 0; gap: 28px; animation-duration: 75s; }
+  .ticker-inner span { font-size:9px; letter-spacing:1px; }
+  .ticker-inner b { font-size:13px; }
+}
+@keyframes portrait-rise-mobile {
+  0%,100% { translate: 0 0; }
+  50% { translate: 0 -5px; }
+}
+@keyframes portrait-glow-mobile {
+  from { opacity: .44; transform:scale(.96); }
+  to { opacity: .78; transform:scale(1.05); }
+}
+@keyframes sparkle-mobile {
+  0%,100% { opacity:.42; transform:scale(.92); }
+  50% { opacity:.9; transform:scale(1.15); }
 }
 @media (max-width: 390px) {
-  .hero-visual { min-height: 330px; max-width: 310px; }
-  .portrait-frame { max-width: 250px; }
+  .hero-visual { min-height: 370px; max-width: 320px; }
+  .portrait-frame { max-width: 265px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-visual::before,.portrait-frame,.portrait-back-ring,.hero-spark,.ticker-inner {
+    animation: none !important;
+  }
+  .portrait-frame { translate: none !important; }
 }
