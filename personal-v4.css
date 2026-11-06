@@ -200,7 +200,7 @@
 
 
 /* V4.4: reliable mobile portrait badges, positioned clearly outside the face. */
-.personal-grid { grid-template-columns:repeat(4,minmax(0,1fr)); }
+.personal-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
 .personal-card { min-width:0; }
 .personal-card-books { background:var(--surface-soft); }
 .personal-card-books .personal-symbol { font-size:34px; }
