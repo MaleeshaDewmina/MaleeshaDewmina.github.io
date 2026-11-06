@@ -1,0 +1,66 @@
+/* V4 — a more personal, human-first portfolio. Supports light and dark themes. */
+#about, #beyond-code, #projects { scroll-margin-top:90px; }
+.about-section { padding-bottom:70px; }
+.about-section .about-copy p { max-width:660px; }
+.story-proof-grid {
+  margin-top:43px; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px;
+}
+.story-proof-item { background:var(--surface-soft); border:1px solid var(--line); border-radius:17px; padding:23px 22px; min-width:0; }
+.story-proof-number { display:block; color:var(--violet); font-weight:800; font-size:12px; letter-spacing:1px; margin-bottom:13px; }
+.story-proof-item strong { display:block; font:700 17px/1.3 'Outfit',sans-serif; letter-spacing:-.35px; color:var(--text); }
+.story-proof-item p { color:var(--subtle); font-size:13px; line-height:1.65; margin:8px 0 0; }
+.personal-section { background:var(--page); }
+.personal-intro { display:flex; justify-content:space-between; align-items:end; gap:35px; margin-bottom:28px; }
+.personal-intro h2 { font-size:clamp(37px,4.6vw,64px); line-height:1.12; letter-spacing:-2.2px; max-width:570px; margin:0; }
+.personal-intro p { color:var(--subtle); font-size:15px; max-width:525px; line-height:1.75; margin:0; }
+.personal-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+.personal-card { position:relative; overflow:hidden; min-height:270px; border-radius:22px; padding:28px 25px 30px; border:1px solid var(--line); }
+.personal-card-music { background:var(--surface); }
+.personal-card-explore { background:var(--surface-soft); }
+.personal-card-growth { background:var(--surface); }
+.personal-index { color:var(--violet); letter-spacing:1.5px; font-size:10px; font-weight:800; }
+.personal-symbol { display:block; font-size:42px; line-height:1; margin:25px 0 23px; font-family:Georgia,serif; color:var(--violet); }
+.personal-card h3 { font-size:23px; line-height:1.25; letter-spacing:-.55px; margin:0 0 13px; }
+.personal-card p { font-size:14px; color:var(--subtle); line-height:1.7; margin:0; }
+.personal-outro { margin:20px 0 0; font:italic 16px/1.55 Georgia,serif; color:var(--subtle); text-align:center; }
+.project-library-details { margin-top:22px; }
+.project-library-summary { display:flex; gap:18px; align-items:center; padding:27px 30px; border:1px solid var(--line); border-radius:22px; background:var(--surface); box-shadow:var(--shadow); cursor:pointer; list-style:none; transition:border-color .2s,transform .2s; }
+.project-library-summary::-webkit-details-marker { display:none; }
+.project-library-summary::marker { content:""; }
+.project-library-summary:hover { border-color:var(--violet); }
+.library-summary-icon { flex:none; width:52px; height:52px; display:grid; place-items:center; border-radius:16px; background:var(--lime); color:#16211e; font:500 30px/1 'Outfit',sans-serif; transition:transform .2s; }
+.project-library-details[open] .library-summary-icon { transform:rotate(45deg); }
+.library-summary-copy { display:grid; gap:5px; flex:1; min-width:0; }
+.library-summary-copy strong { font:700 clamp(20px,2vw,27px)/1.2 'Outfit',sans-serif; color:var(--text); letter-spacing:-.5px; }
+.library-summary-copy small { font-size:13px; line-height:1.55; color:var(--subtle); }
+.library-summary-cta { color:var(--violet); font-size:11px; font-weight:800; white-space:nowrap; letter-spacing:1px; }
+.project-library-inner { padding-top:35px; }
+#projects .project-toolbar { margin-top:0; }
+@media(max-width:950px) {
+  .story-proof-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .story-proof-item:last-child { grid-column:1/-1; }
+  .personal-intro { display:block; }
+  .personal-intro p { margin-top:20px; max-width:700px; }
+  .personal-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .personal-card:last-child { grid-column:1/-1; min-height:220px; }
+}
+@media(max-width:600px) {
+  .about-section { padding-bottom:46px; }
+  .story-proof-grid { grid-template-columns:1fr; margin-top:26px; gap:10px; }
+  .story-proof-item,.story-proof-item:last-child { grid-column:auto; padding:20px; }
+  .personal-intro h2 { font-size:clamp(33px,9vw,43px); letter-spacing:-1.5px; }
+  .personal-intro p { font-size:14px; line-height:1.7; }
+  .personal-grid { grid-template-columns:1fr; gap:12px; }
+  .personal-card,.personal-card:last-child { grid-column:auto; min-height:0; padding:22px 21px; }
+  .personal-symbol { margin:14px 0 15px; font-size:34px; }
+  .personal-card h3 { font-size:21px; }
+  .personal-card p { font-size:13.5px; }
+  .personal-outro { font-size:14px; }
+  .project-library-summary { align-items:flex-start; gap:13px; padding:20px 17px; border-radius:18px; flex-wrap:wrap; }
+  .library-summary-icon { width:41px; height:41px; border-radius:12px; font-size:25px; }
+  .library-summary-copy { flex:1; }
+  .library-summary-copy strong { font-size:20px; }
+  .library-summary-copy small { font-size:12.5px; }
+  .library-summary-cta { margin-left:54px; }
+  .project-library-inner { padding-top:21px; }
+}
