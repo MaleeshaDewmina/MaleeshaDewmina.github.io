@@ -1,0 +1,48 @@
+name: Vendor Student AI Pro screenshots
+on:
+  push:
+    paths:
+      - ".github/workflows/vendor-student-ai-screenshots.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  copy-screenshots:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout portfolio
+        uses: actions/checkout@v4
+      - name: Download the three original public GitHub README screenshots
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p assets/projects/student-ai-pro
+          fetch_png() {
+            local url="$1" target="$2"
+            curl --fail --location --show-error --silent --retry 3 --max-time 70 \
+              -A 'Mozilla/5.0' -o "$target" "$url"
+            local mime
+            mime="$(file -b --mime-type "$target")"
+            echo "$target: $mime ($(wc -c < "$target") bytes)"
+            if [ "$mime" != "image/png" ]; then
+              echo "::error::Expected PNG screenshot, got $mime for $target"
+              exit 1
+            fi
+            test "$(wc -c < "$target")" -gt 3000
+          }
+          fetch_png 'https://github.com/user-attachments/assets/e605e497-de50-4482-8188-4f497433b859' 'assets/projects/student-ai-pro/login.png'
+          fetch_png 'https://github.com/user-attachments/assets/ee729adb-7913-4203-9771-d0755b370221' 'assets/projects/student-ai-pro/main-chat.png'
+          fetch_png 'https://github.com/user-attachments/assets/512dbb04-a5c5-4c88-ac83-1e056db2b99c' 'assets/projects/student-ai-pro/chat-history.png'
+      - name: Commit stable local copies for the portfolio
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/projects/student-ai-pro/login.png assets/projects/student-ai-pro/main-chat.png assets/projects/student-ai-pro/chat-history.png
+          if ! git diff --cached --quiet; then
+            git commit -m "assets: cache authentic Student AI Pro screenshots for portfolio"
+            git push
+          fi
