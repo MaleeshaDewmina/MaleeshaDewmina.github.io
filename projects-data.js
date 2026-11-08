@@ -3,10 +3,11 @@ window.PORTFOLIO_PROJECTS = [
   {
     "title": "EduMind AI",
     "repo": "EduMindAI-Learning-Assistant",
-    "type": "Individual · Final-year research",
+    "type": "Individual · Final-year BEng project",
     "cat": [
       "ai",
-      "software"
+      "software",
+      "web"
     ],
     "initials": "AI",
     "tone": "forest",
@@ -16,21 +17,73 @@ window.PORTFOLIO_PROJECTS = [
       "MySQL",
       "Groq API"
     ],
-    "desc": "A research-led learning assistant exploring motivation, growth mindset and personalised AI feedback.",
+    "desc": "A completed full-stack AI learning assistant with study planning, progress insights, personalised feedback and research evaluation.",
     "highlights": [
-      "Student-facing learning assistance, study-task management and progress tracking.",
-      "Personalised AI responses and research evaluation modules.",
-      "Final-year BEng Software Engineering research project."
+      "Study planner, progress dashboards and personalised feedback grounded in recorded activities.",
+      "AI study coach with Groq API; separate Student, Lecturer and Administrator workflows.",
+      "Completed BEng project with a public code repository and a hosted application requiring sign-in."
     ],
-    "status": "Research prototype · Code repository is private.",
-    "img": null,
-    "credit": "Private research project",
-    "private": true,
+    "status": "Completed academic project · Hosted application available (sign-in required).",
+    "img": "https://raw.githubusercontent.com/MaleeshaDewmina/EduMindAI-Learning-Assistant/main/docs/screenshots/dashboard.webp",
+    "img_alt": "EduMind AI student dashboard with learning progress statistics",
+    "credit": "Original project screenshot",
+    "private": false,
     "more": [],
     "url": "https://github.com/MaleeshaDewmina/EduMindAI-Learning-Assistant",
-    "gallery": [],
-    "visual_count": 0,
-    "cover_credit": "Private project · no public screenshots"
+    "live_url": "https://edumind-ai-project.alwaysdata.net/auth/login",
+    "gallery": [
+      {
+        "src": "https://raw.githubusercontent.com/MaleeshaDewmina/EduMindAI-Learning-Assistant/main/docs/screenshots/dashboard.webp",
+        "alt": "Student dashboard",
+        "label": "Dashboard",
+        "kind": "Screenshot",
+        "source": "EduMind AI project documentation · Student progress dashboard"
+      },
+      {
+        "src": "https://raw.githubusercontent.com/MaleeshaDewmina/EduMindAI-Learning-Assistant/main/docs/screenshots/study-planner.webp",
+        "alt": "Study Planner",
+        "label": "Study Planner",
+        "kind": "Screenshot",
+        "source": "EduMind AI project documentation · Academic task planning"
+      },
+      {
+        "src": "https://raw.githubusercontent.com/MaleeshaDewmina/EduMindAI-Learning-Assistant/main/docs/screenshots/ai-study-coach.webp",
+        "alt": "AI Study Coach",
+        "label": "AI Study Coach",
+        "kind": "Screenshot",
+        "source": "EduMind AI project documentation · Conversational learning support"
+      },
+      {
+        "src": "https://raw.githubusercontent.com/MaleeshaDewmina/EduMindAI-Learning-Assistant/main/docs/screenshots/personalised-feedback.webp",
+        "alt": "Personalised Feedback",
+        "label": "Personalised Feedback",
+        "kind": "Screenshot",
+        "source": "EduMind AI project documentation · Feedback based on study activity"
+      },
+      {
+        "src": "https://raw.githubusercontent.com/MaleeshaDewmina/EduMindAI-Learning-Assistant/main/docs/screenshots/research-evaluation.webp",
+        "alt": "Research Evaluation",
+        "label": "Research Evaluation",
+        "kind": "Screenshot",
+        "source": "EduMind AI project documentation · Pre-test and post-test questionnaire"
+      },
+      {
+        "src": "https://raw.githubusercontent.com/MaleeshaDewmina/EduMindAI-Learning-Assistant/main/docs/screenshots/lecturer-dashboard.webp",
+        "alt": "Lecturer dashboard",
+        "label": "Lecturer Workspace",
+        "kind": "Screenshot",
+        "source": "EduMind AI project documentation · Consent-controlled progress reporting"
+      },
+      {
+        "src": "https://raw.githubusercontent.com/MaleeshaDewmina/EduMindAI-Learning-Assistant/main/docs/screenshots/login.webp",
+        "alt": "Welcome and sign-in page",
+        "label": "Sign In",
+        "kind": "Screenshot",
+        "source": "EduMind AI project documentation · Authentication interface"
+      }
+    ],
+    "visual_count": 7,
+    "cover_credit": "Screenshot from completed project README"
   },
   {
     "title": "HealthTrack Pro",
