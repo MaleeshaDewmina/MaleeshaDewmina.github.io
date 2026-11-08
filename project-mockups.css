@@ -1,0 +1,145 @@
+/* Real-screenshot device compositions for ten portfolio project covers.
+   Screenshots are original project images; laptop/phone/panel frames are decorative. */
+.project-image.has-device-cover{height:268px;background:transparent}
+.project-image.has-device-cover::after{display:none}
+.featured-visual.has-device-cover{background:transparent !important;overflow:hidden}
+.featured-visual.has-device-cover::before,.featured-visual.has-device-cover::after{display:none !important}
+.device-cover{
+ --mock-bg1:#f4f0ff;--mock-bg2:#b6aef1;--mock-ink:#25234c;--mock-accent:#6553cc;
+ position:absolute;inset:0;width:100%;height:100%;
+ display:block;overflow:hidden;isolation:isolate;
+ background:radial-gradient(ellipse at 73% 28%,rgba(255,255,255,.94),transparent 39%),linear-gradient(127deg,var(--mock-bg1) 8%,var(--mock-bg2) 100%);
+ color:var(--mock-ink);
+}
+.device-cover.theme-violet{--mock-bg1:#f1ecff;--mock-bg2:#b9b0f3;--mock-ink:#3f3086;--mock-accent:#6942dd}
+.device-cover.theme-teal{--mock-bg1:#ecfffc;--mock-bg2:#9bd7d7;--mock-ink:#174d54;--mock-accent:#197b88}
+.device-cover.theme-blue{--mock-bg1:#e8f2ff;--mock-bg2:#8eb6e7;--mock-ink:#164785;--mock-accent:#2658b7}
+.device-cover.theme-sky{--mock-bg1:#edfaff;--mock-bg2:#a5cbe6;--mock-ink:#1a5677;--mock-accent:#237cbb}
+.device-cover.theme-indigo{--mock-bg1:#f0f0ff;--mock-bg2:#aeb7e7;--mock-ink:#343f89;--mock-accent:#455fd2}
+.device-cover.theme-lilac{--mock-bg1:#f7f0fc;--mock-bg2:#d0b9e4;--mock-ink:#6e377f;--mock-accent:#9358aa}
+.device-cover.theme-amber{--mock-bg1:#fff8ed;--mock-bg2:#edcfac;--mock-ink:#81552a;--mock-accent:#cb8d42}
+.device-cover.theme-slate{--mock-bg1:#e6eff6;--mock-bg2:#a4b8ca;--mock-ink:#354c66;--mock-accent:#477392}
+.device-cover.theme-rose{--mock-bg1:#fff1f5;--mock-bg2:#edbacd;--mock-ink:#85415e;--mock-accent:#b8668c}
+.device-cover.theme-green{--mock-bg1:#f0ffe8;--mock-bg2:#a8dab3;--mock-ink:#315d3d;--mock-accent:#36875c}
+.device-cover::before{
+ content:"";position:absolute;width:67%;aspect-ratio:1;right:-20%;top:-35%;z-index:0;
+ border-radius:50%;border:1px solid rgba(255,255,255,.35);
+ box-shadow:0 0 0 26px rgba(255,255,255,.12),0 0 0 64px rgba(255,255,255,.08);
+}
+.device-cover::after{
+ content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+ background-image:linear-gradient(90deg,rgba(255,255,255,.17) 1px,transparent 1px),linear-gradient(rgba(255,255,255,.13) 1px,transparent 1px);
+ background-size:34px 34px;mask-image:linear-gradient(95deg,transparent 8%,#000 85%);opacity:.28;
+}
+.device-cover .device-project-label{
+ position:absolute;bottom:12px;left:16px;right:16px;z-index:6;
+ display:flex;align-items:center;justify-content:space-between;gap:7px;
+ font-family:'Outfit','DM Sans',sans-serif;font-size:10px;line-height:1.2;letter-spacing:.7px;
+ text-transform:uppercase;font-weight:800;opacity:.9;
+}
+.device-cover .device-project-label span:last-child{font-size:9px;white-space:nowrap;opacity:.68;letter-spacing:0}
+.device-cover .device-decor-dot{position:absolute;width:8px;height:8px;top:21%;right:13%;border-radius:50%;background:var(--mock-accent);opacity:.30}
+.device-cover .device-decor-spark{position:absolute;left:7%;bottom:14%;color:var(--mock-accent);font-size:24px;opacity:.34;line-height:1}
+.device-cover .device-laptop{
+ position:absolute;left:7%;top:23%;width:70%;height:63%;
+ z-index:2;transform:rotate(-3deg) perspective(620px) rotateY(5deg);
+ filter:drop-shadow(0 19px 16px rgba(33,31,57,.24));
+ transition:transform .45s ease;
+}
+.device-cover .device-laptop-display{
+ position:relative;width:100%;height:87%;padding:6px;
+ border:2px solid #3a4653;border-bottom-width:5px;
+ border-radius:11px 11px 4px 4px;background:#151a28;
+ box-shadow:0 1px 1px #fff7 inset;
+}
+.device-cover .device-laptop-camera{
+ position:absolute;z-index:3;top:2px;left:50%;width:3px;height:3px;border-radius:50%;background:#5b6984;
+}
+.device-cover .device-laptop-screen{
+ position:relative;width:100%;height:100%;overflow:hidden;background:#f7f8ff;border-radius:4px;
+}
+.device-cover .device-laptop-screen img,
+.device-cover .device-secondary-screen img{
+ display:block;width:100%;height:100%;object-fit:cover;object-position:center top;
+ transform:none !important;transition:none !important;filter:none !important;
+}
+.device-cover .device-laptop-foot{
+ position:relative;left:-9%;width:118%;height:12%;
+ background:linear-gradient(180deg,#ccd2dc,#f5f6f8 38%,#8996a8 97%);
+ border-radius:1px 1px 50% 50%/1px 1px 65% 65%;
+ clip-path:polygon(6% 0,94% 0,100% 84%,93% 100%,7% 100%,0 84%);
+}
+.device-cover .device-laptop-foot::before{
+ content:"";position:absolute;left:39%;top:0;width:22%;height:32%;
+ border-radius:0 0 8px 8px;background:#99a6b5bb;
+}
+.device-cover .device-secondary{
+ position:absolute;z-index:4;right:6%;top:30%;width:24%;height:54%;
+ padding:5px;background:#17212f;border:1px solid rgba(255,255,255,.56);
+ border-radius:19px;box-shadow:0 17px 32px rgba(33,31,57,.25);
+ transform:rotate(6deg);transition:transform .45s ease;
+}
+.device-cover .device-secondary::before{
+ content:"";position:absolute;z-index:5;top:7px;left:50%;width:20%;height:4px;
+ background:#202733;border-radius:5px;transform:translateX(-50%);
+}
+.device-cover .device-secondary-screen{
+ display:block;position:relative;width:100%;height:100%;
+ overflow:hidden;border-radius:14px;background:#f7f8ff;
+}
+.device-cover.variant-panels .device-secondary,
+.device-cover.variant-research .device-secondary{
+ right:4%;top:43%;width:32%;height:34%;
+ border-radius:9px;padding:5px;background:#f8fbff;border-color:#ffffffda;
+ transform:rotate(5deg);box-shadow:0 15px 27px rgba(16,26,52,.23);
+}
+.device-cover.variant-panels .device-secondary::before,
+.device-cover.variant-research .device-secondary::before{display:none}
+.device-cover.variant-panels .device-secondary-screen,
+.device-cover.variant-research .device-secondary-screen{border-radius:4px}
+.device-cover.variant-desktop .device-laptop,
+.device-cover.variant-research .device-laptop{left:8%;width:76%;top:25%;height:59%;transform:rotate(-1deg)}
+.device-cover.variant-desktop .device-laptop-display,
+.device-cover.variant-research .device-laptop-display{border-radius:5px;border:5px solid #243248;height:85%}
+.device-cover.variant-desktop .device-laptop-foot,
+.device-cover.variant-research .device-laptop-foot{
+ height:15%;left:44%;width:14%;background:linear-gradient(#afbac8,#687a90);
+ clip-path:polygon(38% 0,62% 0,68% 65%,100% 86%,100% 100%,0 100%,0 86%,32% 65%);border-radius:0;
+}
+.device-cover.variant-desktop .device-secondary{right:3%;top:43%;width:31%;height:33%;border-radius:9px;background:#f7fbff;transform:rotate(4deg)}
+.device-cover.variant-desktop .device-secondary::before{display:none}
+.device-cover.variant-desktop .device-secondary-screen{border-radius:4px}
+.device-cover.variant-analytics .device-laptop-screen img,
+.device-cover.variant-analytics .device-secondary-screen img,
+.device-cover.variant-research .device-laptop-screen img,
+.device-cover.variant-research .device-secondary-screen img{object-fit:contain;background:#fff}
+.device-cover:hover .device-laptop{transform:translateY(-3px) rotate(-2deg) perspective(620px) rotateY(4deg)}
+.device-cover:hover .device-secondary{transform:translateY(-4px) rotate(4deg)}
+.device-cover.variant-desktop:hover .device-laptop,
+.device-cover.variant-research:hover .device-laptop{transform:translateY(-3px) rotate(-1deg)}
+/* Project cards and featured cards use identical source-accurate visual compositions. */
+.project-image.has-device-cover .device-cover,
+.featured-visual.has-device-cover .device-cover{inset:0}
+.project-image.has-device-cover .device-project-label{bottom:12px;left:15px;right:15px}
+.project-image.has-device-cover .project-image-top{z-index:9}
+.featured-visual.has-device-cover .device-laptop{top:22%;height:68%}
+.featured-visual.has-device-cover .device-secondary{top:31%;height:58%}
+.featured-visual.has-device-cover .variant-panels .device-secondary,
+.featured-visual.has-device-cover .variant-desktop .device-secondary,
+.featured-visual.has-device-cover .variant-research .device-secondary{top:45%;height:32%}
+.featured-visual.has-device-cover .device-project-label{bottom:16px;left:19px;right:19px;font-size:11px}
+@media(max-width:800px){
+ .project-image.has-device-cover{height:270px}
+ .device-cover .device-laptop{top:25%;height:60%}
+}
+@media(max-width:450px){
+ .project-image.has-device-cover{height:244px}
+ .device-cover .device-laptop{left:6%;width:70%;top:26%;height:58%}
+ .device-cover .device-secondary{right:5%;width:25%;top:33%;height:52%}
+ .device-cover.variant-panels .device-secondary,.device-cover.variant-desktop .device-secondary,.device-cover.variant-research .device-secondary{width:33%;height:32%;top:45%}
+ .device-cover .device-project-label{font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){
+ .device-cover .device-laptop,.device-cover .device-secondary{transition:none !important}
+ .device-cover:hover .device-laptop,.device-cover:hover .device-secondary{transform:none}
+}
