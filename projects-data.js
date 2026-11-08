@@ -462,12 +462,12 @@ window.PORTFOLIO_PROJECTS = [
       "Developed with collaborators; contribution credits remain in the repository."
     ],
     "status": "Academic team application.",
-    "img": "https://github.com/user-attachments/assets/ee729adb-7913-4203-9771-d0755b370221",
+    "img": "assets/projects/student-ai-pro/main-chat.png",
     "img_alt": "Student AI Pro main chat interface",
     "credit": "Screenshot from project README",
     "more": [
       {
-        "src": "https://github.com/user-attachments/assets/e605e497-de50-4482-8188-4f497433b859",
+        "src": "assets/projects/student-ai-pro/login.png",
         "alt": "Student AI Pro sign-in and registration screen"
       }
     ],
@@ -475,21 +475,21 @@ window.PORTFOLIO_PROJECTS = [
     "url": "https://github.com/MaleeshaDewmina/Student_AI_Pro",
     "gallery": [
       {
-        "src": "https://github.com/user-attachments/assets/e605e497-de50-4482-8188-4f497433b859",
+        "src": "assets/projects/student-ai-pro/login.png",
         "alt": "Login and registration",
         "label": "Login and registration",
         "kind": "Screenshot",
         "source": "GitHub README attachment"
       },
       {
-        "src": "https://github.com/user-attachments/assets/ee729adb-7913-4203-9771-d0755b370221",
+        "src": "assets/projects/student-ai-pro/main-chat.png",
         "alt": "Main chat window",
         "label": "Main chat window",
         "kind": "Screenshot",
         "source": "GitHub README attachment"
       },
       {
-        "src": "https://github.com/user-attachments/assets/512dbb04-a5c5-4c88-ac83-1e056db2b99c",
+        "src": "assets/projects/student-ai-pro/chat-history.png",
         "alt": "Conversation history sidebar",
         "label": "Conversation history sidebar",
         "kind": "Screenshot",
