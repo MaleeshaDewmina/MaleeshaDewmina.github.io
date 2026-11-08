@@ -6,7 +6,7 @@ Modern, responsive portfolio for Maleesha Dewmina Perera. **No build step requir
 
 - **13 existing projects, 87 gallery references, 12 technology filters**, and the original project descriptions and links. Some galleries point to GitHub-hosted screenshots and need internet access.
 - **Interactive typing headline** with four rotating two-line messages, light/dark theme, command palette (`Ctrl/Cmd+K`), skills explorer, case-study dialogs, project search, simulated terminal, and mobile navigation.
-- **Three new guided screenshot tours**: HealthTrack Pro, SmartMed and Velvet Vogue. These use original gallery screenshots and provide source links. They are **not** hosted applications or recorded demos. EduMind AI remains correctly marked as private/in research.
+- **Three new guided screenshot tours**: HealthTrack Pro, SmartMed and Velvet Vogue. These use original gallery screenshots and provide source links. EduMind AI is a **completed, deployed academic application** with a public [source repository](https://github.com/MaleeshaDewmina/EduMindAI-Learning-Assistant), [live sign-in page](https://edumind-ai-project.alwaysdata.net/auth/login), and seven documented screenshots. The other project tours show screenshots rather than hosted demos.
 - **Career journey** connecting visual design, diploma recognition, OREL IT, and ongoing engineering studies. Earlier experience, education and achievement sections remain intact.
 - **Contact form** with client-side validation, honeypot, provider feedback, copy-message alternative and an email link.
 - **SEO**: canonical URL, social preview (`assets/social-preview.jpg`), Open Graph/Twitter tags, Person JSON-LD, favicon, touch icons, sitemap, robots.txt, and 404 page.
