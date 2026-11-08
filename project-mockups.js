@@ -7,10 +7,6 @@
     "EduMindAI-Learning-Assistant":{theme:"violet",variant:"panels",primary:0,secondary:2,subtitle:"AI · STUDY SUPPORT"},
     "HealthTrack-Pro":{theme:"teal",variant:"panels",primary:0,secondary:1,subtitle:"FITNESS MANAGEMENT"},
     "SmartMedERP-Pharmacy-Management-System":{theme:"blue",variant:"desktop",primary:0,secondary:1,subtitle:"PHARMACY ERP"},
-    "SRMSS-ASE-Coursework":{theme:"sky",variant:"panels",primary:2,secondary:3,subtitle:"ROUTES & SCHEDULING"},
-    "Student_AI_Pro":{theme:"indigo",variant:"panels",primary:1,secondary:2,subtitle:"AI STUDENT ASSISTANT"},
-    "AI-Chatbots-Student-Motivation-Research":{theme:"lilac",variant:"research",primary:0,secondary:3,subtitle:"ACADEMIC RESEARCH"},
-    "Dream-Book-Shop-Application":{theme:"amber",variant:"analytics",primary:0,secondary:1,subtitle:"PYTHON DATA ANALYSIS"},
     "Doctor-Channelling-System":{theme:"slate",variant:"desktop",primary:2,secondary:3,subtitle:"JAVA CONSOLE SYSTEM"},
     "Velvet-Vogue-Clothing-Website":{theme:"rose",variant:"panels",primary:0,secondary:1,subtitle:"E-COMMERCE WEBSITE"},
     "Fresh-Grocers-Online-Ordering-System":{theme:"green",variant:"panels",primary:0,secondary:1,subtitle:"GROCERY WEB PROTOTYPE"}
