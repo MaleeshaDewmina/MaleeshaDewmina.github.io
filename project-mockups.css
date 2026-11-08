@@ -155,3 +155,21 @@
 @media(max-width:450px){
  .device-cover.variant-analytics .device-secondary{width:33%;height:31%;top:45%}
 }
+
+/* Screenshot fallback — no broken image glyphs if an external GitHub attachment is unavailable. */
+.device-cover .device-source-fallback{
+  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:8px;text-align:center;
+  padding:9px;background:linear-gradient(135deg,#f8fcff,#e3f1fc);
+  color:#214b74;
+}
+.device-cover .device-source-fallback img{
+  display:block;width:min(82%,190px);height:auto;max-height:70%;
+  object-fit:contain;object-position:center;filter:none!important;transform:none!important;
+}
+.device-cover .device-source-fallback span{
+  font:700 9px/1.25 'DM Sans',Arial,sans-serif;letter-spacing:.15px;
+}
+.device-cover .device-secondary-screen .device-source-fallback span{font-size:7px}
+.device-cover[data-project-repo="SRMSS-ASE-Coursework"] .device-laptop-screen img,
+.device-cover[data-project-repo="SRMSS-ASE-Coursework"] .device-secondary-screen img{object-fit:contain;background:#fff}
