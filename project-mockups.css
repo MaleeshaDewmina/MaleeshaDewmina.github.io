@@ -143,3 +143,15 @@
  .device-cover .device-laptop,.device-cover .device-secondary{transition:none !important}
  .device-cover:hover .device-laptop,.device-cover:hover .device-secondary{transform:none}
 }
+
+/* Research and analytics output belongs in presentation panels, not phone silhouettes. */
+.device-cover.variant-analytics .device-secondary{
+ right:4%;top:42%;width:33%;height:34%;border-radius:9px;
+ padding:5px;background:#fff;border-color:#ffffffde;
+ transform:rotate(5deg);
+}
+.device-cover.variant-analytics .device-secondary::before{display:none}
+.device-cover.variant-analytics .device-secondary-screen{border-radius:4px}
+@media(max-width:450px){
+ .device-cover.variant-analytics .device-secondary{width:33%;height:31%;top:45%}
+}
