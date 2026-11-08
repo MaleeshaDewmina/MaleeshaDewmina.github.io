@@ -47,13 +47,13 @@
   const caseStudies = {
     edumind: {
       pi:0,kind:'01 / AI + EDUCATION',title:'EduMind AI',
-      summary:'A final-year research prototype exploring personalised AI feedback, student motivation and a growth-mindset learning experience.',
-      challenge:'Students need timely learning support that goes beyond simply giving an answer. My research explores how personalised feedback could encourage motivation and constructive learning habits.',
-      approach:'Structure the project around the learning experience and its evaluation: understand user needs, build an AI-assisted prototype and investigate responses to personalised feedback.',
-      implementation:'A Python / Flask and MySQL-based approach with AI-assisted feedback via the Groq API. The study also includes a research evaluation component.',
-      reflection:'Ongoing research: the next steps are to refine the prototype, evaluate the feedback experience and report findings with appropriate research limitations.',
-      role:'Individual · final-year BEng Software Engineering research',
-      outcome:'Research prototype in development. This is not a claim of measured learning gains.'
+      summary:'A completed and deployed full-stack academic learning assistant combining study planning, progress insights, an AI study coach and personalised feedback.',
+      challenge:'Students benefit from an accessible way to organise study tasks, review activity and receive supportive learning guidance. The accompanying research explores motivation and growth-mindset-related feedback.',
+      approach:'Designed and built distinct student, lecturer and administrator workflows, including study planning, progress dashboards, AI assistance, consent-controlled reporting and questionnaire evaluation.',
+      implementation:'Python and Flask with MySQL, SQLAlchemy and a Groq API integration. Hosted on alwaysdata with an Aiven MySQL database; the GitHub repository includes original application screenshots and technical documentation.',
+      reflection:'The completed project brought together web development, role-based permissions, cloud deployment, AI integration and research evaluation. Questionnaire findings are exploratory and do not establish a causal impact on motivation.',
+      role:'Individual · completed final-year BEng Software Engineering project',
+      outcome:'Completed academic prototype with a hosted sign-in page and public source code. It is not an institutional production service.'
     },
     healthtrack: {
       pi:1,kind:'02 / WEB PLATFORM',title:'HealthTrack Pro',
@@ -87,8 +87,9 @@
     const tags = (p.tags || []).map(tag => `<span>${escapeHTML(tag)}</span>`).join('');
     const galleryButton = p.gallery?.length ? `<button type="button" class="case-action secondary" data-case-gallery="${c.pi}">View ${p.gallery.length} project visuals <svg class="external-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></button>` : '';
     const githubButton = !p.private && /^https:\/\/github\.com\//.test(p.url||'') ? `<a class="case-action" href="${escapeHTML(p.url)}" target="_blank" rel="noopener noreferrer">Explore on GitHub <svg class="external-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a>` : `<span class="case-private-note">The research repository is private.</span>`;
+    const liveButton = /^https:\/\/[^\s]+$/.test(p.live_url||'') ? `<a class="case-action" href="${escapeHTML(p.live_url)}" target="_blank" rel="noopener noreferrer">Visit live application ↗</a>` : '';
     const storySection = (heading,text) => `<section><h3>${escapeHTML(heading)}</h3><p>${escapeHTML(text)}</p></section>`;
-    caseContent.innerHTML = `<div class="case-hero"><div class="case-kicker">✳︎ ${escapeHTML(c.kind)}</div><h2 id="case-heading">${escapeHTML(c.title)}</h2><p>${escapeHTML(c.summary)}</p></div><div class="case-content"><div class="case-tags">${tags}</div><div class="case-story-grid">${storySection('The challenge',c.challenge)}${storySection('My approach',c.approach)}${storySection('Implementation',c.implementation)}${storySection('Learning and next steps',c.reflection)}</div><div class="case-role-note"><strong>Context</strong> · ${escapeHTML(c.role)}<br><span>${escapeHTML(c.outcome)}</span></div><div class="case-actions">${githubButton}${galleryButton}</div></div>`;
+    caseContent.innerHTML = `<div class="case-hero"><div class="case-kicker">✳︎ ${escapeHTML(c.kind)}</div><h2 id="case-heading">${escapeHTML(c.title)}</h2><p>${escapeHTML(c.summary)}</p></div><div class="case-content"><div class="case-tags">${tags}</div><div class="case-story-grid">${storySection('The challenge',c.challenge)}${storySection('My approach',c.approach)}${storySection('Implementation',c.implementation)}${storySection('Learning and next steps',c.reflection)}</div><div class="case-role-note"><strong>Context</strong> · ${escapeHTML(c.role)}<br><span>${escapeHTML(c.outcome)}</span></div><div class="case-actions">${liveButton}${githubButton}${galleryButton}</div></div>`;
     caseDialog.showModal();
     $('#case-close')?.focus();
   }
@@ -125,7 +126,7 @@
     {label:'PHP',icon:'<?',match:/^PHP$/i,description:'PHP applications with database-backed business workflows.'},
     {label:'Java',icon:'Ja',match:/^Java$/i,description:'Console programming and algorithm-focused application workflows.'},
     {label:'JavaScript',icon:'JS',match:/^JavaScript$/i,description:'Dynamic web pages and front-end interactions.'},
-    {label:'Flask',icon:'Fl',match:/^Flask$/i,description:'Lightweight Python web development for the learning assistant research prototype.'},
+    {label:'Flask',icon:'Fl',match:/^Flask$/i,description:'Python and Flask powering the deployed EduMind AI learning platform.'},
     {label:'AI tools',icon:'AI',match:/AI integration|Groq API|AI in education/i,description:'Working with AI APIs, AI-enabled features and education-focused research.'},
     {label:'Data analysis',icon:'Σ',match:/Pandas|Matplotlib|Statistics|SPSS|CSV/i,description:'Interpreting and visualising research and catalogue data.'},
     {label:'Systems design',icon:'◎',match:/Systems design|Layered design|ER modelling|Algorithms/i,description:'Planning architectures, data models and algorithms before implementation.'}
@@ -240,7 +241,7 @@
     help: 'Commands: whoami · stack · focus · projects · contact · theme · clear · help',
     whoami: 'Maleesha Dewmina Perera\nSoftware Engineering undergraduate · Sri Lanka\nI build thoughtful software, AI experiments and tools for learning.',
     stack: 'Languages: Python, C#, Java, JavaScript, PHP\nPlatforms: Flask, ASP.NET MVC, WinForms, Streamlit\nData: SQL Server, MySQL, SQLite',
-    focus: 'Current focus: EduMind AI\nExploring personalised feedback, motivation and growth mindset.',
+    focus: 'Completed project: EduMind AI\nDeployed learning support app with study planning, progress insights and AI feedback.',
     projects: 'Opening the project library…',
     contact: 'Opening the contact section…',
     theme: 'Switching colour theme…',
