@@ -173,3 +173,8 @@
 .device-cover .device-secondary-screen .device-source-fallback span{font-size:7px}
 .device-cover[data-project-repo="SRMSS-ASE-Coursework"] .device-laptop-screen img,
 .device-cover[data-project-repo="SRMSS-ASE-Coursework"] .device-secondary-screen img{object-fit:contain;background:#fff}
+
+/* Student AI Pro graceful screenshot fallback if GitHub attachment hosting is unavailable. */
+.device-ai-fallback-emblem{display:grid;place-items:center;width:72px;height:72px;border-radius:22px;background:linear-gradient(135deg,#7789d9,#424da6);color:white;font:800 35px/1 Outfit,sans-serif;letter-spacing:-1px;box-shadow:0 8px 23px #363d7b35}
+.device-secondary-screen .device-ai-fallback-emblem{width:40px;height:40px;font-size:22px;border-radius:12px}
+.device-cover[data-project-repo="Student_AI_Pro"] .device-laptop-screen img,.device-cover[data-project-repo="Student_AI_Pro"] .device-secondary-screen img{object-fit:contain;background:#fff}
