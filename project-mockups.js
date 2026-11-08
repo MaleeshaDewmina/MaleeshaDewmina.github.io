@@ -8,6 +8,7 @@
     "HealthTrack-Pro":{theme:"teal",variant:"panels",primary:0,secondary:1,subtitle:"FITNESS MANAGEMENT"},
     "SmartMedERP-Pharmacy-Management-System":{theme:"blue",variant:"desktop",primary:0,secondary:1,subtitle:"PHARMACY ERP"},
     "SRMSS-ASE-Coursework":{theme:"sky",variant:"panels",primary:2,secondary:3,subtitle:"ROUTES & SCHEDULING"},
+    "Student_AI_Pro":{theme:"indigo",variant:"panels",primary:1,secondary:2,subtitle:"STUDENT AI ASSISTANT"},
     "Leave-Management-System":{theme:"blue",variant:"desktop",primary:0,secondary:2,subtitle:"LEAVE MANAGEMENT"},
     "E-Space-Solutions-Database-System":{theme:"teal",variant:"desktop",primary:0,secondary:1,subtitle:"DATABASE MANAGEMENT"},
     "Skills-International-Student-Management-System":{theme:"indigo",variant:"desktop",primary:2,secondary:1,subtitle:"STUDENT MANAGEMENT"},
@@ -52,7 +53,17 @@
         if(!area)return;
         const secondary=Boolean(img.closest('.device-secondary-screen'));
         img.remove();
-        if(isRoute){
+        if(project.repo==='Student_AI_Pro'){
+          const fallback=document.createElement('div');
+          fallback.className='device-source-fallback';
+          const emblem=document.createElement('strong');
+          emblem.textContent='AI';
+          emblem.className='device-ai-fallback-emblem';
+          const label=document.createElement('span');
+          label.textContent=secondary?'Conversation history':'Student AI Pro';
+          fallback.append(emblem,label);
+          area.appendChild(fallback);
+        }else if(isRoute){
           const logo=document.createElement('img');
           logo.src=secondary
             ? 'https://raw.githubusercontent.com/MaleeshaDewmina/SRMSS-ASE-Coursework/main/src/SRMSS.Web/wwwroot/images/srmss-login-hero.png'
