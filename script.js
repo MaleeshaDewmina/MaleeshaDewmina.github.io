@@ -110,12 +110,14 @@
     const points = (p.highlights || []).map(point => `<li>${escapeHTML(point)}</li>`).join('');
     const repo = safeExternal(p.url);
     const mainAction = p.private ? `<span class="project-private">Research repository is private <span aria-hidden="true"><svg class="external-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>` : `<a class="project-action" href="${escapeHTML(repo)}" target="_blank" rel="noopener noreferrer">Explore code <span aria-hidden="true"><svg class="external-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></a>`;
+    const liveUrl = p.live_url ? safeExternal(p.live_url) : '';
+    const liveAction = liveUrl ? `<a class="project-action project-action-secondary" href="${escapeHTML(liveUrl)}" target="_blank" rel="noopener noreferrer" aria-label="Visit ${escapeHTML(p.title)} live application">Live app ↗</a>` : '';
     const galleryAction = gallery.length ? `<button class="project-action project-action-secondary" type="button" data-gallery-open="${i}" aria-label="View ${escapeHTML(p.title)} project gallery">Gallery <span aria-hidden="true"><svg class="external-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></button>` : '';
     const details = points ? `<details class="project-details"><summary>Project highlights</summary><ul>${points}</ul></details>` : '';
     return `<article class="project-card reveal" data-category="${escapeHTML((p.cat || []).join(' '))}" data-search="${escapeHTML([p.title,p.desc,p.type,(p.tags||[]).join(' ')].join(' ').toLowerCase())}">
       <div class="project-image${hasCover ? '' : ' no-image'}">${visualMarkup}<div class="project-image-top"><span class="project-index">${String(i + 1).padStart(2, '0')} / ${String(projects.length).padStart(2, '0')}</span><span class="project-pill">${escapeHTML(badge)}</span></div></div>
       <div class="project-card-body"><h3 class="project-card-title">${escapeHTML(p.title)}</h3><p class="project-card-desc">${escapeHTML(p.desc)}</p><div class="project-tags">${tags}</div>${details}</div>
-      <div class="project-bottom">${mainAction}${galleryAction}</div>
+      <div class="project-bottom">${mainAction}${liveAction}${galleryAction}</div>
     </article>`;
   };
   grid.innerHTML = projects.map(cardTemplate).join('');
