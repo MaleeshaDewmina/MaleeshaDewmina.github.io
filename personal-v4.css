@@ -530,3 +530,33 @@
   .credential-logo-futurelearn{font-size:12px}
   .futurelearn-brand-mark{width:20px;height:20px}
 }
+
+
+/* V4.10 — Locally hosted credential artwork: larger, legible on mobile. */
+.credential-logo-accenture img {
+  width:100%;
+  max-width:180px;
+  max-height:68px;
+  object-fit:contain;
+}
+.credential-logo-stage-clearer {
+  height:165px;
+  min-height:165px;
+  padding:8px 12px;
+}
+.credential-logo-stage-clearer>img {
+  display:block;
+  width:auto;
+  max-width:min(94%,240px);
+  height:auto;
+  max-height:134px;
+  object-fit:contain;
+}
+.credential-logo-stage-clearer .credential-logo-caption {
+  margin-top:0;
+  font-size:8px;
+}
+@media(max-width:620px){
+  .credential-logo-stage-clearer{height:170px;min-height:170px}
+  .credential-logo-stage-clearer>img{max-height:138px;max-width:94%}
+}
