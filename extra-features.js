@@ -164,6 +164,7 @@
     ['Skills explorer','Pick a technology and see related projects','skills-explorer','⌘'],
     ['Experience','Work experience and responsibilities','experience','◷'],
     ['Education','Software engineering studies','education','✎'],
+    ['Certifications & badges','Verified AWS Educate training badge','credentials','✦'],
     ['Career journey','Explore my timeline','career-journey','◷'],
     ['Achievements','Milestones and recognition','milestones','★'],
     ['Developer terminal','Try a playful simulated terminal','terminal','>_'],
