@@ -407,3 +407,78 @@
   .credential-art.credential-art-official{min-height:215px;padding:18px}
   .credential-art-official img{width:min(100%,205px)}
 }
+
+
+/* V4.8 — Earned credentials: differentiate genuine certificates from official badges. */
+.credentials-additional{
+  margin-top:18px;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:16px;
+  align-items:stretch;
+}
+.credential-mini{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:17px;
+  box-shadow:0 5px 20px rgba(15,23,42,.035);
+}
+.credential-mini-primary{border-color:rgba(104,151,98,.28)}
+.credential-mini-illustration{
+  background:linear-gradient(125deg,#113b38,#126d59 70%,#2ba77f);
+  border-radius:15px;
+  min-height:122px;
+  position:relative;
+  overflow:hidden;
+  padding:16px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  color:#f9fff8;
+  isolation:isolate;
+}
+.credential-mini-illustration::before{
+  content:"";
+  position:absolute;
+  inset:-55% -20% auto auto;
+  width:80%;
+  aspect-ratio:1;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.25);
+  box-shadow:0 0 0 22px rgba(255,255,255,.045),0 0 0 46px rgba(255,255,255,.035);
+  pointer-events:none;
+}
+.credential-mini-illustration-purple{background:linear-gradient(125deg,#2d1c55,#61368e 70%,#a472ce)}
+.credential-mini-illustration-blue{background:linear-gradient(125deg,#163d66,#285b9c 70%,#4097c9)}
+.credential-mini-mark{
+  font:750 47px/1 Outfit,sans-serif;
+  letter-spacing:-2px;
+  position:relative;
+}
+.credential-mini-visual-label{
+  font-size:9px;
+  font-weight:850;
+  letter-spacing:1.45px;
+  position:relative;
+}
+.credential-mini-body{padding:18px 5px 6px;display:flex;flex-direction:column;flex:1}
+.credential-mini-category{font-size:9px;font-weight:850;letter-spacing:1px;color:var(--violet);line-height:1.5}
+.credential-mini h3{font:700 20px/1.28 Outfit,sans-serif;letter-spacing:-.5px;margin:9px 0}
+.credential-mini-issuer{color:var(--text);font-size:11px;font-weight:750;line-height:1.65;margin:0 0 10px}
+.credential-mini-body>p:not(.credential-mini-issuer){font-size:12px;line-height:1.8;color:var(--subtle);margin:0 0 13px}
+.credential-mini-source{border-top:1px solid var(--line);padding-top:12px;color:var(--muted);font-size:10px;line-height:1.7;margin-top:auto}
+.credential-integrity-note{margin:15px 0 0;font-size:11px;line-height:1.8;color:var(--subtle);max-width:930px}
+.credentials-next-symbol svg{width:31px;height:31px}
+@media (max-width:980px){.credentials-additional{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){
+  .credentials-additional{grid-template-columns:1fr;gap:12px}
+  .credential-mini{padding:14px;border-radius:18px}
+  .credential-mini-illustration{min-height:96px}
+  .credential-mini-mark{font-size:40px}
+  .credential-mini-body{padding:16px 4px 5px}
+  .credential-mini h3{font-size:20px}
+}
