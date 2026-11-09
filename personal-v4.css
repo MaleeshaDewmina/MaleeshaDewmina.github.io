@@ -385,3 +385,25 @@
 @media(max-width:900px){.credentials-layout{grid-template-columns:1fr}.credentials-next{gap:0}.credentials-next-symbol{margin-bottom:10px}.credentials-counter{display:none}}
 @media(max-width:620px){.credential-card{grid-template-columns:1fr;padding:18px;gap:22px}.credential-art{min-height:205px;padding:15px}.credential-art-symbol{width:55px;height:55px;margin:10px auto 6px}.credential-art-issuer{font-size:40px}.credential-art-name{font-size:19px}.credential-content{padding:0 4px 5px}.credential-content h3{font-size:25px}.credential-verify-link{width:100%}.credentials-next{padding:24px}.credentials-next h3{font-size:25px}}
 @media(prefers-reduced-motion:reduce){.credential-verify-link{transition:none}.credential-verify-link:hover{transform:none}}
+
+/* V4.7 — show the original Credly-hosted AWS Educate badge without recreating branding. */
+.credential-art.credential-art-official {
+  background:linear-gradient(145deg,#f8fafc,#edf2f5);
+  border:1px solid #e2e8ed;
+  min-height:292px;
+  padding:24px;
+}
+.credential-art.credential-art-official::before{display:none}
+.credential-art-official img{
+  display:block;
+  width:min(100%,254px);
+  height:auto;
+  aspect-ratio:1/1;
+  object-fit:contain;
+  margin:auto;
+  filter:none;
+}
+@media(max-width:620px){
+  .credential-art.credential-art-official{min-height:215px;padding:18px}
+  .credential-art-official img{width:min(100%,205px)}
+}
