@@ -18,31 +18,27 @@ Modern, responsive portfolio for Maleesha Dewmina Perera. **No build step requir
 2. Open the extracted folder in **VS Code**.
 3. Right-click **index.html → Open with Live Server**.
 4. Test the hero animation, screenshot walkthroughs, search, Ctrl/Cmd+K palette, skills explorer, theme, galleries and mobile navigation.
-5. Test the form validation and copy-message button. **Submitting the form contacts an external provider**; see below before doing a real submission.
+5. Test form validation and **Copy message** locally. A valid submission sends a real message through the active Formspree endpoint. Submit only when you intend to send a test message.
 
 The site is static. You do not need npm, PHP, databases or credentials to browse it.
 
-## Important: activate direct contact delivery
+## Contact form
 
-The form uses **FormSubmit.co** with the portfolio's existing public contact email `maleeshadewmina@gmail.com`.
+The portfolio uses **Formspree** to receive contact submissions. The current endpoint, `https://formspree.io/f/mnppwwan`, is active, and the site owner has confirmed delivery to the configured inbox. No activation step is needed for this endpoint.
 
-- GitHub Pages **cannot receive form submissions itself**; the form sends its name, email, subject and message to `https://formsubmit.co/ajax/maleeshadewmina@gmail.com`.
-- **First use requires activation:** from the deployed site, send one genuine test message (with your own details), then open the activation email sent to `maleeshadewmina@gmail.com` and follow its confirmation link. Until then **do not assume messages will be delivered**.
-- After activating, send a second test and confirm that it reaches the inbox. You can also run a test from Live Server, but the production-site test is essential.
-- No API keys or fabricated credentials are included. The sender can use the alternative **Copy message** option or direct email link if the service is unavailable.
-- The form displays a confirmation only after the provider accepts the request. That acceptance does **not** guarantee mailbox delivery before activation. A honeypot discourages simple bots; it is not a complete anti-abuse system.
-- Visitor-submitted data is processed by a third-party service. Review its privacy policy and your publication requirements before enabling public submissions. If preferred, replace the service with your own verified Formspree endpoint and adapt the handler in `extra-features.js`.
+- `index.html` sets the endpoint as the form's `POST` action. `extra-features.js` submits to the same endpoint using `fetch` and displays the result on the page. The native HTML `POST` is available when JavaScript is disabled.
+- The success message confirms that Formspree accepted the submission. Check the configured inbox when verifying email delivery.
+- If submission fails, use **Copy message** or the direct email link. Formspree processes the submitted contact details.
+- If the endpoint changes, update it in both files. Send a test from the live site and confirm that the message arrives in the configured inbox.
 
-Provider documentation: https://formsubmit.co/documentation and https://formsubmit.co/ajax-documentation
+## Update the GitHub Pages site
 
-## Publish to GitHub Pages **after you finish local testing**
+The portfolio is published at [maleeshadewmina.github.io](https://maleeshadewmina.github.io/).
 
-1. Create a **public** repository called `MaleeshaDewmina.github.io` under your GitHub username.
-2. Upload the **extracted files and folders**, including `index.html`, all `.css`/`.js` files, `assets/`, the updated creative CV PDF, and `.nojekyll` to the repository **root**. Do not upload only the ZIP.
-3. In **Settings → Pages**, set **Deploy from a branch**, select `main` and `/(root)`.
-4. Once deployed, open `https://maleeshadewmina.github.io/`. Test all visuals, gallery links, the contact form and the PDF.
-5. The SEO canonical and social-sharing URLs are **preconfigured for that exact site address**. If the published URL or custom domain differs, update `index.html`, `sitemap.xml`, `robots.txt`, the website manifest and the `404.html` back link.
-6. Social previews normally appear **only after the live site is publicly reachable** by preview bots. Use WhatsApp/LinkedIn sharing to inspect after publishing.
+1. Test your changes locally, then commit and push them to `main` in this repository. Keep `index.html`, the CSS and JavaScript files, `assets/`, the CV PDF, and `.nojekyll` in their existing locations.
+2. After GitHub Pages deploys, open the live site and check the affected pages, gallery links, and CV PDF as applicable. If the contact form or its configuration changed, send a test from the live site and confirm delivery in the configured inbox.
+3. If Pages needs to be reconfigured, go to **Settings → Pages**, choose **Deploy from a branch**, and select `main` and `/(root)`.
+4. If the site URL changes, update the canonical and social-sharing URLs in `index.html`, along with `sitemap.xml`, `robots.txt`, `site.webmanifest`, and the back link in `404.html`. If the sharing metadata changes, check the preview on LinkedIn or WhatsApp after deployment.
 
 ### Important publishing checks
 
@@ -79,5 +75,5 @@ sitemap.xml
 - Project data: **13 projects, 87 gallery references**; all referenced local gallery and page resources present.
 - Walkthrough modal: open, next step, arrow-key navigation and close tested.
 - Command palette navigation, original project and skills rendering, hero portrait, reduced-motion headline and contact validation tested.
-- Contact success path exercised using a **mocked provider response**. A live provider submission and activation must be done by the site owner; delivery was not tested against a real inbox.
+- The contact form's success path was exercised with a mocked provider response during local validation. The site owner later confirmed inbox delivery from the active Formspree setup.
 - No Lighthouse score is claimed. Use Chrome DevTools → Lighthouse once the site is deployed to check real network conditions and optimise any remaining external images.
