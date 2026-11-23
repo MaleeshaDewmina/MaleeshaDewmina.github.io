@@ -560,3 +560,30 @@
   .credential-logo-stage-clearer{height:170px;min-height:170px}
   .credential-logo-stage-clearer>img{max-height:138px;max-width:94%}
 }
+
+/* Desktop proportions keep the complete introduction and actions in view. */
+@media (min-width: 801px) {
+  .hero-layout {
+    grid-template-columns: minmax(0, 1.2fr) minmax(300px, .8fr);
+    gap: clamp(24px, 4vw, 64px);
+    padding-top: clamp(40px, 5vh, 64px);
+    padding-bottom: 40px;
+    min-height: 620px;
+  }
+  .hero h1 {
+    font-size: clamp(44px, 4.2vw, 66px);
+    letter-spacing: -.045em;
+    line-height: 1.08;
+    margin-bottom: 22px;
+  }
+  .hero .headline-highlight { letter-spacing: inherit; }
+  .typing-heading .typing-line { min-height: 1.08em; }
+  .hero-kicker { margin-top: 24px; }
+  .hero-intro { font-size: 16px; line-height: 1.7; margin-bottom: 22px; }
+  .hero-socials { margin-top: 24px; }
+  .hero-visual { width: min(100%, 420px); min-height: 460px; }
+  .about-layout { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 6%; }
+  .about-big { font-size: clamp(23px, 2.1vw, 29px); line-height: 1.4; }
+  .about-copy > p:not(.about-big) { line-height: 1.8; }
+  .about-doodle { margin-top: 30px; }
+}
