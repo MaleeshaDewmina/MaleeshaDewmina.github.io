@@ -1,4 +1,4 @@
-/* Project data and gallery references. Original descriptions/screenshots retained. */
+/* Project data and gallery references. */
 window.PORTFOLIO_PROJECTS = [
   {
     "title": "EduMind AI",
@@ -21,6 +21,7 @@ window.PORTFOLIO_PROJECTS = [
     "highlights": [
       "Study planner, progress dashboards, AI study coach and practical feedback based on recorded activity.",
       "Student, Lecturer and Administrator features with role-based permissions and consent-controlled reporting.",
+      "Latest documented regression run recorded 105 passing pytest tests across 14 modules.",
       "Public source code and a hosted application; an account is required to explore protected features."
     ],
     "status": "Completed academic project · Live application available (sign-in required).",
@@ -88,7 +89,7 @@ window.PORTFOLIO_PROJECTS = [
   {
     "title": "HealthTrack Pro",
     "repo": "HealthTrack-Pro",
-    "type": "Web application",
+    "type": "Team project · Application Development",
     "cat": [
       "software",
       "web"
@@ -105,7 +106,8 @@ window.PORTFOLIO_PROJECTS = [
     "highlights": [
       "Client, trainer and administrator workflows.",
       "Fitness dashboards, goal tracking and health analytics.",
-      "ASP.NET MVC architecture with Entity Framework and SQL Server."
+      "ASP.NET MVC architecture with Entity Framework and SQL Server.",
+      "My contribution — project leadership, backend integration, authentication and administration."
     ],
     "status": "Academic software project · See repository for scope and setup.",
     "img": "https://github.com/user-attachments/assets/b3640383-7b4b-418a-8fa5-fbd9d54f1e7b",
@@ -122,50 +124,50 @@ window.PORTFOLIO_PROJECTS = [
     "gallery": [
       {
         "src": "https://github.com/user-attachments/assets/b3640383-7b4b-418a-8fa5-fbd9d54f1e7b",
-        "alt": "Client dashboard",
+        "alt": "Client dashboard — HealthTrack Pro",
         "label": "Client dashboard",
         "kind": "Screenshot",
         "source": "GitHub README attachment"
       },
       {
         "src": "https://github.com/user-attachments/assets/573b6688-5494-47b5-aacc-e6279095428f",
-        "alt": "Progress analytics",
+        "alt": "Progress analytics — HealthTrack Pro",
         "label": "Progress analytics",
         "kind": "Screenshot",
         "source": "GitHub README attachment"
       },
       {
         "src": "https://github.com/user-attachments/assets/b15edc81-6ec0-4e40-a162-8c4170b2daaa",
-        "alt": "AI fitness coach — view 1",
-        "label": "AI fitness coach — view 1",
+        "alt": "AI fitness coach — HealthTrack Pro",
+        "label": "AI fitness coach",
         "kind": "Screenshot",
         "source": "GitHub README attachment"
       },
       {
         "src": "https://github.com/user-attachments/assets/40bafae4-5c92-4ee0-9aaa-6a05b5a0d4ea",
-        "alt": "AI fitness coach — view 2",
-        "label": "AI fitness coach — view 2",
+        "alt": "Client profile — HealthTrack Pro",
+        "label": "Client profile",
         "kind": "Screenshot",
         "source": "GitHub README attachment"
       },
       {
         "src": "https://github.com/user-attachments/assets/63205c13-3474-4633-8930-7837f2ea2d77",
-        "alt": "AI fitness coach — view 3",
-        "label": "AI fitness coach — view 3",
+        "alt": "Fitness goals — HealthTrack Pro",
+        "label": "Fitness goals",
         "kind": "Screenshot",
         "source": "GitHub README attachment"
       },
       {
         "src": "https://github.com/user-attachments/assets/97c85235-66be-4583-b98d-cc64cf5439a9",
-        "alt": "AI fitness coach — view 4",
-        "label": "AI fitness coach — view 4",
+        "alt": "Workout management — HealthTrack Pro",
+        "label": "Workout management",
         "kind": "Screenshot",
         "source": "GitHub README attachment"
       },
       {
         "src": "https://github.com/user-attachments/assets/9d759618-8602-40f3-9d02-d624afdb91f9",
-        "alt": "AI fitness coach — view 5",
-        "label": "AI fitness coach — view 5",
+        "alt": "Diet management — HealthTrack Pro",
+        "label": "Diet management",
         "kind": "Screenshot",
         "source": "GitHub README attachment"
       }
@@ -350,7 +352,7 @@ window.PORTFOLIO_PROJECTS = [
     "highlights": [
       "Route planning, stop management and schedule workflows.",
       "Built with ASP.NET Core MVC and Entity Framework Core.",
-      "Team coursework with responsibilities described in the repository."
+      "My contribution — authentication, dashboards, user management and audit logs."
     ],
     "status": "Team coursework · Contributions credited within repository.",
     "img": "https://github.com/user-attachments/assets/d474ee54-d353-4c47-89cf-4662fbaa7bc0",

@@ -53,17 +53,17 @@
       implementation:'Python and Flask with MySQL, SQLAlchemy and a Groq API integration. Hosted on alwaysdata with an Aiven MySQL database; the GitHub repository includes original application screenshots and technical documentation.',
       reflection:'The completed project brought together web development, role-based permissions, cloud deployment, AI integration and research evaluation. Questionnaire findings are exploratory and do not establish a causal impact on motivation.',
       role:'Individual · completed final-year BEng Software Engineering project',
-      outcome:'Completed academic prototype with a hosted sign-in page and public source code. It is not an institutional production service.'
+      outcome:'Deployed application with public source code. The latest documented complete regression run recorded 105 passing pytest tests across 14 modules.'
     },
     healthtrack: {
       pi:1,kind:'02 / WEB PLATFORM',title:'HealthTrack Pro',
       summary:'A role-based fitness platform designed around workout planning, nutrition support and progress tracking.',
       challenge:'A fitness management workflow needs a coherent experience for clients and trainers, with records and progress views that fit different roles.',
-      approach:'Organise the application around client, trainer and administrator flows, including dashboards, health records and workout-related features.',
+      approach:'Led project integration and implemented authentication and administration. Worked with the client and trainer module developers to connect their workflows through the shared backend.',
       implementation:'ASP.NET MVC and C# with Entity Framework and SQL Server. The project includes role-based interactions and AI-related fitness features documented in the repository.',
       reflection:'A useful exercise in aligning interface design, application structure and persistent data across user roles.',
-      role:'Academic web application',
-      outcome:'Functional scope is documented in the public project repository; no external usage metrics are claimed.'
+      role:'Team project · My contribution covered project leadership, backend integration, authentication and administration',
+      outcome:'Delivered an integrated coursework application with separate client, trainer and administrator workflows.'
     },
     smartmed: {
       pi:2,kind:'03 / DESKTOP SOFTWARE',title:'SmartMed Pharmacy ERP',

@@ -6,6 +6,8 @@
  const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
  const escapeHTML=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const configs=[
+  {index:0,kicker:'PYTHON / FLASK / MYSQL',intro:'Study planning → AI coach → personalised feedback → lecturer reporting',
+   steps:[{index:0,note:'The student dashboard brings recorded study activity and progress summaries together.'},{index:1,note:'The Study Planner lets students organise tasks, priorities and deadlines.'},{index:2,note:'The AI Study Coach provides conversational learning support through the Groq API.'},{index:3,note:'Personalised feedback uses recorded learning activity to offer practical suggestions.'},{index:5,note:'Lecturers can review student progress through student-controlled sharing permissions.'}]},
   {index:1,kicker:'ASP.NET MVC / WELLNESS',intro:'Client dashboard → analytics → AI fitness coach screens',
    steps:[{index:0,note:'The client dashboard screenshot shows how the fitness platform presents information to a signed-in user.'},{index:1,note:'The progress analytics screenshot documents a visual reporting view in the project.'},{index:2,note:'The repository includes this AI fitness coach interface screenshot. Open the source image to inspect its actual details.'}]},
   {index:2,kicker:'C# / PHARMACY MANAGEMENT',intro:'Admin overview → inventory → customer ordering',
