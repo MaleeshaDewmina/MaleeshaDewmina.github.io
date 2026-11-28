@@ -666,7 +666,6 @@
 .tech-card strong { display:block; font:600 15px/1.25 'Outfit',sans-serif; }
 .tech-card small { display:block; color:var(--subtle); font:500 10px/1.4 'DM Sans',sans-serif; margin-top:4px; }
 .tech-marquee:hover .tech-track, .tech-marquee:focus-within .tech-track, .tech-marquee.is-paused .tech-track { animation-play-state:paused; }
-.tech-row:focus-within .tech-track { animation:none; }
 #skills-results { scroll-margin-top:110px; }
 @keyframes technology-scroll { to { transform:translateX(-33.333333%); } }
 @media (hover:none), (prefers-reduced-motion:reduce) {
