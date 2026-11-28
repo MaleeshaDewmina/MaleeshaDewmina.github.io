@@ -682,3 +682,7 @@
   .tech-card strong { font-size:14px; }
   .tech-group { gap:10px; padding-right:10px; }
 }
+
+/* A single set of skill controls feeds the full-width project panel. */
+.skills-explorer.skills-explorer-single { grid-template-columns:minmax(0,1fr); min-height:0; }
+.tech-symbol { display:grid; place-items:center; width:30px; height:30px; flex-shrink:0; color:var(--violet); font:700 24px/1 'Outfit',sans-serif; }
