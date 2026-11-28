@@ -172,7 +172,7 @@
         const artwork = icon
           ? `<img src="assets/tech/${icon}.svg" alt="" width="30" height="30"${monochrome}>`
           : `<span class="tech-symbol" aria-hidden="true">${escapeHTML(skills[index].icon)}</span>`;
-        return `<button type="button" class="tech-card" data-tech-skill="${index}" aria-pressed="${index === activeSkill}">${artwork}<span><strong>${escapeHTML(label)}</strong><small>View projects ↗</small></span></button>`;
+        return `<button type="button" class="tech-card" data-tech-skill="${index}" aria-pressed="${index === activeSkill}">${artwork}<span><strong>${escapeHTML(label)}</strong></span></button>`;
       }).join('');
       const duplicateCards = cards.replaceAll('type="button"', 'type="button" tabindex="-1"');
       container.innerHTML = `<div class="tech-track"><div class="tech-group">${cards}</div><div class="tech-group" aria-hidden="true">${duplicateCards}</div><div class="tech-group" aria-hidden="true">${duplicateCards}</div></div>`;
@@ -184,6 +184,11 @@
       setSkill(Number(card.dataset.techSkill));
       $('#skills-results').scrollIntoView({behavior:reducedMotion ? 'auto' : 'smooth', block:'center'});
     });
+    technologyMarquee.addEventListener('pointerdown', () => technologyMarquee.classList.add('is-interacting'));
+    const endTechnologyInteraction = () => technologyMarquee.classList.remove('is-interacting');
+    window.addEventListener('pointerup', endTechnologyInteraction);
+    window.addEventListener('pointercancel', endTechnologyInteraction);
+    window.addEventListener('blur', endTechnologyInteraction);
     $('#tech-motion-toggle').addEventListener('click', event => {
       const paused = technologyMarquee.classList.toggle('is-paused');
       event.currentTarget.setAttribute('aria-pressed', String(paused));
