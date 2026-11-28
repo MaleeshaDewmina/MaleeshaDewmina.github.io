@@ -647,3 +647,39 @@
 @media (prefers-reduced-motion: reduce) {
   .hero .portrait-frame, .hero-visual .portrait-phrase { animation: none; }
 }
+
+/* Technology cards share the existing Skills explorer filters. */
+.tech-marquee { margin: 0 0 32px; }
+.tech-marquee-toolbar { display:flex; justify-content:space-between; align-items:center; gap:16px; margin-bottom:16px; }
+.tech-marquee-toolbar p { margin:0; color:var(--subtle); font-size:14px; }
+.tech-motion-toggle { flex-shrink:0; border:1px solid var(--line); border-radius:30px; padding:9px 14px; background:var(--surface); color:var(--text); font:600 12px 'DM Sans',sans-serif; cursor:pointer; }
+.tech-motion-toggle:focus-visible, .tech-card:focus-visible { outline:3px solid var(--violet); outline-offset:3px; }
+.tech-row { overflow-x:auto; scrollbar-width:none; padding:5px 0 9px; -webkit-mask-image:linear-gradient(to right,transparent,#000 3%,#000 97%,transparent); mask-image:linear-gradient(to right,transparent,#000 3%,#000 97%,transparent); }
+.tech-row::-webkit-scrollbar { display:none; }
+.tech-track { display:flex; width:max-content; animation:technology-scroll 48s linear infinite; }
+.tech-row-reverse .tech-track { animation-direction:reverse; animation-duration:40s; }
+.tech-group { display:flex; gap:14px; padding-right:14px; flex-shrink:0; }
+.tech-card { width:182px; min-height:77px; padding:15px 16px; display:flex; gap:13px; align-items:center; text-align:left; border:1px solid var(--line); border-radius:16px; background:var(--surface-soft); color:var(--text); cursor:pointer; transition:border-color .2s,background-color .2s; }
+.tech-card:hover, .tech-card[aria-pressed="true"] { border-color:var(--violet); background:var(--surface); }
+.tech-card img { width:30px; height:30px; object-fit:contain; flex-shrink:0; }
+.tech-card .tech-monochrome { filter: invert(45%) sepia(24%) saturate(1100%) hue-rotate(217deg); }
+.tech-card strong { display:block; font:600 15px/1.25 'Outfit',sans-serif; }
+.tech-card small { display:block; color:var(--subtle); font:500 10px/1.4 'DM Sans',sans-serif; margin-top:4px; }
+.tech-marquee:hover .tech-track, .tech-marquee:focus-within .tech-track, .tech-marquee.is-paused .tech-track { animation-play-state:paused; }
+.tech-row:focus-within .tech-track { animation:none; }
+#skills-results { scroll-margin-top:110px; }
+@keyframes technology-scroll { to { transform:translateX(-33.333333%); } }
+@media (hover:none), (prefers-reduced-motion:reduce) {
+  .tech-track { animation:none; }
+  .tech-group[aria-hidden="true"] { display:none; }
+  .tech-row { scrollbar-width:thin; mask-image:none; -webkit-mask-image:none; scroll-snap-type:x proximity; }
+  .tech-card { scroll-snap-align:start; }
+  .tech-motion-toggle { display:none; }
+}
+@media (max-width:600px) {
+  .tech-marquee-toolbar { align-items:flex-start; }
+  .tech-marquee-toolbar p { font-size:12px; }
+  .tech-card { width:158px; min-height:70px; padding:13px; }
+  .tech-card strong { font-size:14px; }
+  .tech-group { gap:10px; padding-right:10px; }
+}

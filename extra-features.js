@@ -131,6 +131,14 @@
     {label:'Data analysis',icon:'Σ',match:/Pandas|Matplotlib|Statistics|SPSS|CSV/i,description:'Interpreting and visualising research and catalogue data.'},
     {label:'Systems design',icon:'◎',match:/Systems design|Layered design|ER modelling|Algorithms/i,description:'Planning architectures, data models and algorithms before implementation.'}
   ];
+  const publicRepository = project => !project.private && /^https:\/\/github\.com\//.test(project.url || '');
+  skills.push(
+    {label:'HTML',icon:'<>',match:/HTML/i,description:'HTML interfaces in the documented web projects.'},
+    {label:'CSS',icon:'{}',match:/CSS/i,description:'CSS styling in the documented web projects.'},
+    {label:'Git',icon:'Git',match:/^Git$/i,matchesProject:publicRepository,description:'Version-controlled source code in the public project repositories.'},
+    {label:'GitHub',icon:'GH',match:/^GitHub$/i,matchesProject:publicRepository,description:'Public repositories containing source code and project documentation.'},
+    {label:'Postman',icon:'API',match:/Postman/i,matchesProject:project=>project.repo==='EduMindAI-Learning-Assistant',description:'API and HTTP workflow checks documented for EduMind AI.'}
+  );
   let activeSkill = 0;
   const skillChipGrid = $('#skills-chip-grid');
   $('#skills-count').textContent = `${skills.length} technologies`;
@@ -140,15 +148,51 @@
     if(!skill)return;
     activeSkill=index;
     $$('[data-skill-index]',skillChipGrid).forEach(button => button.setAttribute('aria-pressed',String(Number(button.dataset.skillIndex)===index)));
-    const matches=projects.map((p,i)=>({p,i})).filter(({p})=>(p.tags||[]).some(tag=>skill.match.test(tag)));
+    const matches=projects.map((p,i)=>({p,i})).filter(({p})=>((p.tags||[]).some(tag=>skill.match.test(tag)) || Boolean(skill.matchesProject?.(p))));
+    $('[data-tech-skill]').forEach(button => button.setAttribute('aria-pressed', String(Number(button.dataset.techSkill) === index)));
     $('#skill-result-title').textContent=skill.label;
     $('#skill-result-description').textContent=skill.description;
     $('#skill-match-count').textContent=`${matches.length} ${matches.length===1?'project':'projects'}`;
-    $('#skill-projects').innerHTML=matches.length?matches.map(({p,i})=>`<button class="skill-project-link" type="button" data-project-jump="${i}"><span><strong>${escapeHTML(p.title)}</strong><small>${escapeHTML(p.type || 'Project')} · ${escapeHTML((p.tags||[]).filter(tag=>skill.match.test(tag)).join(', '))}</small></span><span aria-hidden="true"><svg class="external-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></button>`).join(''):'<p class="skills-none">No documented projects matched this skill yet.</p>';
+    $('#skill-projects').innerHTML=matches.length?matches.map(({p,i})=>`<button class="skill-project-link" type="button" data-project-jump="${i}"><span><strong>${escapeHTML(p.title)}</strong><small>${escapeHTML(p.type || 'Project')} · ${escapeHTML((p.tags||[]).filter(tag=>skill.match.test(tag)).join(', ') || skill.label)}</small></span><span aria-hidden="true"><svg class="external-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></button>`).join(''):'<p class="skills-none">No documented projects matched this skill yet.</p>';
   }
   skillChipGrid.addEventListener('click', e => { const chip=e.target.closest('[data-skill-index]');if(chip)setSkill(Number(chip.dataset.skillIndex)); });
   $('#skill-projects').addEventListener('click',e=>{const button=e.target.closest('[data-project-jump]');if(button)jumpToProject(Number(button.dataset.projectJump));});
   setSkill(0);
+
+  // Reuse skill selection for the animated technology rows.
+  const technologyRows = [
+    [['Python','python'],['C#','csharp'],['Java','java'],['JavaScript','javascript'],['PHP','php'],['HTML','html5'],['CSS','css3'],['Flask','flask']],
+    [['ASP.NET','dotnetcore'],['MySQL','mysql'],['SQL Server','microsoftsqlserver'],['Git','git'],['GitHub','github'],['Postman','postman']]
+  ];
+  const technologyMarquee = $('#technology-marquee');
+  if (technologyMarquee) {
+    technologyRows.forEach((row, rowIndex) => {
+      const container = document.createElement('div');
+      container.className = 'tech-row' + (rowIndex ? ' tech-row-reverse' : '');
+      container.setAttribute('role', 'group');
+      container.setAttribute('aria-label', rowIndex ? 'Frameworks, databases and tools' : 'Programming and web technologies');
+      const cards = row.map(([label, icon]) => {
+        const index = skills.findIndex(skill => skill.label === label);
+        const monochrome = ['flask', 'github'].includes(icon) ? ' class="tech-monochrome"' : '';
+        return `<button type="button" class="tech-card" data-tech-skill="${index}" aria-pressed="${index === activeSkill}"><img src="assets/tech/${icon}.svg" alt="" width="30" height="30"${monochrome}><span><strong>${escapeHTML(label)}</strong><small>View projects ↗</small></span></button>`;
+      }).join('');
+      const duplicateCards = cards.replaceAll('type="button"', 'type="button" tabindex="-1"');
+      container.innerHTML = `<div class="tech-track"><div class="tech-group">${cards}</div><div class="tech-group" aria-hidden="true">${duplicateCards}</div><div class="tech-group" aria-hidden="true">${duplicateCards}</div></div>`;
+      technologyMarquee.append(container);
+    });
+    technologyMarquee.addEventListener('click', event => {
+      const card = event.target.closest('[data-tech-skill]');
+      if (!card) return;
+      setSkill(Number(card.dataset.techSkill));
+      $('#skills-results').scrollIntoView({behavior:reducedMotion ? 'auto' : 'smooth', block:'center'});
+    });
+    $('#tech-motion-toggle').addEventListener('click', event => {
+      const paused = technologyMarquee.classList.toggle('is-paused');
+      event.currentTarget.setAttribute('aria-pressed', String(paused));
+      event.currentTarget.textContent = paused ? 'Resume animation' : 'Pause animation';
+    });
+  }
+
 
   // Command palette: keyboard navigation, matching projects, sections and actions.
   const commandDialog = $('#command-dialog');
