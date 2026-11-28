@@ -668,7 +668,7 @@
 .tech-marquee:hover .tech-track, .tech-marquee:focus-within .tech-track, .tech-marquee.is-paused .tech-track { animation-play-state:paused; }
 #skills-results { scroll-margin-top:110px; }
 @keyframes technology-scroll { to { transform:translateX(-33.333333%); } }
-@media (hover:none), (prefers-reduced-motion:reduce) {
+@media (max-width:600px), (hover:none), (prefers-reduced-motion:reduce) {
   .tech-track { animation:none; }
   .tech-group[aria-hidden="true"] { display:none; }
   .tech-row { scrollbar-width:thin; mask-image:none; -webkit-mask-image:none; scroll-snap-type:x proximity; }
