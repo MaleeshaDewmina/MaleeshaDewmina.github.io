@@ -149,7 +149,7 @@
     activeSkill=index;
     $$('[data-skill-index]',skillChipGrid).forEach(button => button.setAttribute('aria-pressed',String(Number(button.dataset.skillIndex)===index)));
     const matches=projects.map((p,i)=>({p,i})).filter(({p})=>((p.tags||[]).some(tag=>skill.match.test(tag)) || Boolean(skill.matchesProject?.(p))));
-    $('[data-tech-skill]').forEach(button => button.setAttribute('aria-pressed', String(Number(button.dataset.techSkill) === index)));
+    $$('[data-tech-skill]').forEach(button => button.setAttribute('aria-pressed', String(Number(button.dataset.techSkill) === index)));
     $('#skill-result-title').textContent=skill.label;
     $('#skill-result-description').textContent=skill.description;
     $('#skill-match-count').textContent=`${matches.length} ${matches.length===1?'project':'projects'}`;
