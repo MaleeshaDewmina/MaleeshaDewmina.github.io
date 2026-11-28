@@ -177,6 +177,59 @@
       const duplicateCards = cards.replaceAll('type="button"', 'type="button" tabindex="-1"');
       container.innerHTML = `<div class="tech-track"><div class="tech-group">${cards}</div><div class="tech-group" aria-hidden="true">${duplicateCards}</div><div class="tech-group" aria-hidden="true">${duplicateCards}</div></div>`;
       technologyMarquee.append(container);
+
+      // Move the running loop with a swipe, drag or horizontal wheel gesture.
+      // Scrubbing its timeline avoids an empty edge at either end of the row.
+      const track = container.querySelector('.tech-track');
+      const scrub = pixels => {
+        const animation = track.getAnimations()[0];
+        const width = track.querySelector('.tech-group').getBoundingClientRect().width;
+        if (!animation || !width) return false;
+        const duration = Number(animation.effect.getTiming().duration);
+        const direction = rowIndex ? -1 : 1;
+        const next = Number(animation.currentTime || 0) + direction * pixels * duration / width;
+        animation.currentTime = ((next % duration) + duration) % duration;
+        return true;
+      };
+      let drag = null;
+      let suppressClick = false;
+      container.addEventListener('pointerdown', event => {
+        if (!event.isPrimary || event.button !== 0 || !track.getAnimations().length) return;
+        suppressClick = false;
+        drag = {id:event.pointerId, x:event.clientX, y:event.clientY, moved:false};
+      });
+      container.addEventListener('pointermove', event => {
+        if (!drag || drag.id !== event.pointerId) return;
+        const dx = drag.x - event.clientX;
+        if (!drag.moved) {
+          if (Math.abs(event.clientY - drag.y) > Math.abs(dx)) return;
+          if (Math.abs(dx) < 6) return;
+          drag.moved = true;
+          suppressClick = true;
+          container.setPointerCapture(event.pointerId);
+        }
+        scrub(dx);
+        drag.x = event.clientX;
+      });
+      const finishDrag = () => { drag = null; };
+      container.addEventListener('pointerup', finishDrag);
+      container.addEventListener('pointercancel', finishDrag);
+      container.addEventListener('lostpointercapture', finishDrag);
+      window.addEventListener('pointerup', finishDrag);
+      window.addEventListener('blur', finishDrag);
+      container.addEventListener('click', event => {
+        if (!suppressClick) return;
+        suppressClick = false;
+        event.preventDefault();
+        event.stopPropagation();
+      }, true);
+      container.addEventListener('wheel', event => {
+        const delta = event.shiftKey && !event.deltaX ? event.deltaY : event.deltaX;
+        if (!delta || (!event.shiftKey && Math.abs(event.deltaY) > Math.abs(delta))) return;
+        const pixels = delta * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? container.clientWidth : 1);
+        if (scrub(pixels)) event.preventDefault();
+      }, {passive:false});
+
     });
     technologyMarquee.addEventListener('click', event => {
       const card = event.target.closest('[data-tech-skill]');

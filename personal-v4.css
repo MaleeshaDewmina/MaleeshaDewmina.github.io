@@ -692,3 +692,13 @@
   .tech-motion-toggle { display:none; }
   .tech-card::after { transition:none; }
 }
+
+/* Horizontal gestures scrub the loop while vertical gestures scroll the page. */
+.tech-row { touch-action:pan-y pinch-zoom; cursor:grab; }
+.tech-card { cursor:grab; user-select:none; -webkit-user-select:none; }
+.tech-card img { pointer-events:none; -webkit-user-drag:none; }
+.tech-marquee.is-interacting .tech-row, .tech-marquee.is-interacting .tech-card { cursor:grabbing; }
+@media (prefers-reduced-motion:reduce) {
+  .tech-row { touch-action:auto; }
+  .tech-card { cursor:pointer; }
+}
