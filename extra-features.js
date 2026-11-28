@@ -160,6 +160,7 @@
     [['ASP.NET','dotnetcore'],['MySQL','mysql'],['SQL Server','microsoftsqlserver'],['Git','git'],['GitHub','github'],['Postman','postman'],['AI tools',null],['Data analysis',null],['Systems design',null]]
   ];
   const technologyMarquee = $('#technology-marquee');
+  const nativeTechnologyScroll = window.matchMedia('(max-width:600px), (pointer:coarse), (hover:none)');
   if (technologyMarquee) {
     technologyRows.forEach((row, rowIndex) => {
       const container = document.createElement('div');
@@ -175,13 +176,22 @@
         return `<button type="button" class="tech-card" data-tech-skill="${index}" aria-pressed="${index === activeSkill}">${artwork}<span><strong>${escapeHTML(label)}</strong></span></button>`;
       }).join('');
       const duplicateCards = cards.replaceAll('type="button"', 'type="button" tabindex="-1"');
-      container.innerHTML = `<div class="tech-track"><div class="tech-group">${cards}</div><div class="tech-group" aria-hidden="true">${duplicateCards}</div><div class="tech-group" aria-hidden="true">${duplicateCards}</div></div>`;
+      container.innerHTML = `<div class="tech-scroll-window"><div class="tech-track"><div class="tech-group">${cards}</div><div class="tech-group" aria-hidden="true">${duplicateCards}</div><div class="tech-group" aria-hidden="true">${duplicateCards}</div></div></div>`;
       technologyMarquee.append(container);
 
       // Move the running loop with a swipe, drag or horizontal wheel gesture.
       // Scrubbing its timeline avoids an empty edge at either end of the row.
       const track = container.querySelector('.tech-track');
+      const scrollWindow = container.querySelector('.tech-scroll-window');
+      const group = track.querySelector('.tech-group');
+      // Measure only on layout changes, never while a finger is moving.
+      const resizeScrollWindow = () => {
+        scrollWindow.style.setProperty('--tech-cycle-width', group.getBoundingClientRect().width + 'px');
+      };
+      new ResizeObserver(resizeScrollWindow).observe(group);
+      resizeScrollWindow();
       const scrub = pixels => {
+        if (nativeTechnologyScroll.matches) return false;
         const animation = track.getAnimations()[0];
         const width = track.querySelector('.tech-group').getBoundingClientRect().width;
         if (!animation || !width) return false;
@@ -194,7 +204,7 @@
       let drag = null;
       let suppressClick = false;
       container.addEventListener('pointerdown', event => {
-        if (!event.isPrimary || event.button !== 0 || !track.getAnimations().length) return;
+        if (nativeTechnologyScroll.matches || !event.isPrimary || event.button !== 0 || !track.getAnimations().length) return;
         suppressClick = false;
         drag = {id:event.pointerId, x:event.clientX, y:event.clientY, moved:false};
       });
@@ -237,7 +247,9 @@
       setSkill(Number(card.dataset.techSkill));
       $('#skills-results').scrollIntoView({behavior:reducedMotion ? 'auto' : 'smooth', block:'center'});
     });
-    technologyMarquee.addEventListener('pointerdown', () => technologyMarquee.classList.add('is-interacting'));
+    technologyMarquee.addEventListener('pointerdown', () => {
+      if (!nativeTechnologyScroll.matches) technologyMarquee.classList.add('is-interacting');
+    });
     const endTechnologyInteraction = () => technologyMarquee.classList.remove('is-interacting');
     window.addEventListener('pointerup', endTechnologyInteraction);
     window.addEventListener('pointercancel', endTechnologyInteraction);

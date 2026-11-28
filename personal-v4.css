@@ -702,3 +702,18 @@
   .tech-row { touch-action:auto; }
   .tech-card { cursor:pointer; }
 }
+
+/* Let iOS handle touch scrolling and momentum without per-frame script work. */
+.tech-scroll-window { display:contents; }
+@media (max-width:600px), (pointer:coarse), (hover:none) {
+  .tech-row { overflow-x:auto; overflow-y:hidden; touch-action:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; cursor:auto; }
+  .tech-row::-webkit-scrollbar { display:none; }
+  .tech-scroll-window { display:block; width:calc(var(--tech-cycle-width, 1200px) * 2); overflow:hidden; }
+  .tech-track { will-change:transform; }
+  .tech-card { cursor:pointer; }
+  .tech-marquee:hover .tech-track, .tech-marquee:focus-within .tech-track { animation-play-state:running; }
+  .tech-marquee.is-paused .tech-track { animation-play-state:paused; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .tech-scroll-window { display:contents; }
+}
